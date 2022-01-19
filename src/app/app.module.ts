@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CoacheeProfileComponent } from './coachee-profile/coachee-profile.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    CoacheeProfileComponent,
 
   ],
   imports: [
