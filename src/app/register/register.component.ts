@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import {MemberService} from "../../service/member.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Member} from "../../model/Member";
+
 
 @Component({
   selector: 'app-register',
@@ -9,6 +11,7 @@ import {Member} from "../../model/Member";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
 
   createMemberForm: FormGroup = this.formBuilder.group({
     firstname: ['', [Validators.required, Validators.maxLength(25)]],
@@ -20,8 +23,10 @@ export class RegisterComponent implements OnInit {
   constructor(private memberService: MemberService,
               private formBuilder: FormBuilder) { }
 
+
   ngOnInit(): void {
   }
+
 
   onSubmit(): void {
     console.log("entry onsubmit")
@@ -45,5 +50,6 @@ export class RegisterComponent implements OnInit {
   get password() : FormControl {
     return this.createMemberForm.get('password') as FormControl;
   }
+
 
 }
