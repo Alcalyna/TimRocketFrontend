@@ -5,7 +5,7 @@
       <h1 class="center teal-text lighten-3">Sign in</h1>
       <div class="content-container-with-padding z-depth-4">
         <div class="row">
-          <form class="col s12" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" >
+          <form class="col s12" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" >
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" type="email" class="validate" formControlName="email">
