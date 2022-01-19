@@ -24,6 +24,9 @@ chrome-profiler-events*.json
 
 # IDE - VSCode
 .vscode/
+*.sublime-workspace
+
+# IDE - VSCode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -49,7 +52,6 @@ Thumbs.db
 .DS_STORE
 
 /dist/
-/bazel-out
 /integration/bazel/bazel-*
 .log
 node_modules
@@ -62,7 +64,6 @@ pubspec.lock
 !.devcontainer/README.md
 !.devcontainer/recommended-devcontainer.json
 !.devcontainer/recommended-Dockerfile
-.settings/
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
@@ -75,10 +76,6 @@ modules/.vscode
 
 # Don't check in secret files
 secret.js
-
-# Ignore npm/yarn debug log
-npm-debug.log
-yarn-error.log
 
 # build-analytics
 .build-analytics

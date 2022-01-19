@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private router: Router) {
   }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: '',
       password: ''
