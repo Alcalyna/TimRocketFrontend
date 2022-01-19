@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
+
 
 
 @NgModule({
@@ -30,8 +30,6 @@ import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
-
 
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
