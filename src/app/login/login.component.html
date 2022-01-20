@@ -9,12 +9,17 @@
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" type="email" class="validate" formControlName="email">
+                <mat-error class="field-error" *ngIf="ctlEmail.hasError('required')">Required</mat-error>
+                <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">Please enter a valid e-mail address</mat-error>
+                <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxlength')">Max characters is 50</mat-error>
                 <label for="email">Email</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
                 <input id="password" type="password" class="validate" formControlName="password">
+                <mat-error class="field-error" *ngIf="ctlPassWord.hasError('required')">Required</mat-error>
+                <mat-error class="field-error" *ngIf="ctlPassWord.hasError('pattern')">A password should contain one capital letter, one number and a special character</mat-error>
                 <label for="password">Password</label>
               </div>
             </div>
@@ -23,7 +28,6 @@
                 class="material-icons right">autorenew</i></a>
               <button class="waves-effect waves-light yellow darken-2 btn-large black-text">Sign in<i
                 class="material-icons right" type="submit">send</i></button>
-
             </div>
           </form>
         </div>
