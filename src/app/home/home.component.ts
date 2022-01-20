@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.member$ = this.keyCloakService.currentMember;
+    console.log(this.member$)
   }
 
 }
