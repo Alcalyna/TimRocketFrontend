@@ -41,6 +41,10 @@ export class KeycloakService {
       .pipe(tap(response => this.setToken(response.access_token)));
   }
 
+  get currentMember(): Observable<Member> {
+    return this.currentUser;
+  }
+
   logout(): void {
     localStorage.removeItem(this.token_key_name);
     this.sendSignal();
@@ -62,6 +66,4 @@ export class KeycloakService {
     }
     return null;
   }
-
-
 }
