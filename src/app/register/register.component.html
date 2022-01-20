@@ -65,15 +65,20 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate" formControlName="passwordVerification">
+                  <input id="passwordVerification" type="password" class="validate"
+                         formControlName="passwordVerification">
                   <label for="passwordVerification">Password (again)</label>
                 </div>
                 <div *ngIf="passwordVerification.errors?.['required'] && !passwordVerification.pristine">
                   <p>Please provide your password again</p>
                 </div>
+                <div *ngIf="passwordVerification.errors?.['confirmedValidator']">
+                  <p>Password and password verification must be the same</p>
+                </div>
               </div>
               <div class="row right-align">
-                <button type="submit" [disabled]="!createMemberForm.valid" class="waves-effect waves-light yellow darken-2 btn-large black-text">
+                <button type="submit" [disabled]="!createMemberForm.valid"
+                        class="waves-effect waves-light yellow darken-2 btn-large black-text">
                   Register
                   <i class="material-icons right">send</i>
                 </button>
@@ -84,15 +89,5 @@
       </div>
     </div>
   </div>
-
-  <!--  <div *ngIf="lastname.errors?.['required']">-->
-  <!--    <p>A lastname is required</p>-->
-  <!--  </div>-->
-  <!--  <div *ngIf="email.errors?.['required']">-->
-  <!--    <p>A email is required</p>-->
-  <!--  </div>-->
-  <!--  <div *ngIf="password.errors?.['required']">-->
-  <!--    <p>A password is required</p>-->
-  <!--  </div>-->
 </main>
 
