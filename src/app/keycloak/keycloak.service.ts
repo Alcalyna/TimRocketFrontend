@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {HttpKeycloakService} from "./http-keycloak.service";
 import {tap} from "rxjs/operators";
-import {KeycloakTokenResponse} from "./keycloakTokenResponse";
+
 import * as JWT from "jwt-decode";
 
 
 import {KeycloakToken} from "./keycloak-token";
+import {KeycloakTokenResponse} from "./keycloakTokenResponse";
 
 @Injectable({
   providedIn: 'root'
