@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {MemberService} from "../../service/member.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Member} from "../../model/Member";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -11,25 +12,34 @@ import {Member} from "../../model/Member";
 })
 export class RegisterComponent implements OnInit {
 
+  public error: any;
+
   createMemberForm: FormGroup = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(25)]],
     lastName: ['', [Validators.required, Validators.maxLength(25)]],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    password: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(8)]]
   })
 
   constructor(private memberService: MemberService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    console.log("entry onsubmit")
     const memberToCreate = this.createMemberForm.value as Member;
     this.memberService.createMember(memberToCreate)
-      .subscribe(_ => console.log("success!"));
+      .subscribe(success => {
+          console.log("success");
+        }
+        ,
+        error => {
+          this.error = error;
+        }
+      );
   }
 
   get firstname(): FormControl {
