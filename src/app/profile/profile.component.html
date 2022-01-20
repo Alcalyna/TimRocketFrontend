@@ -23,15 +23,15 @@
         <div class="divider"></div>
         <div class="row">
           <div class="col l2 m2 s12">
-            <img src="img/dummy/profile-picture.jpg" class="responsive-img circle"
+            <img src="assets/dummy/profile-picture.jpg" class="responsive-img circle"
                  alt="Profile Picture">
           </div>
           <div class="col l10 m12 s12">
-            <table class="highlight">
+            <table *ngFor="let member of currentMember" class="highlight">
               <tbody>
               <tr>
                 <td><strong>First name</strong></td>
-                <td>Anna</td>
+                <td>{{member.firstName}}</td>
               </tr>
               <tr>
                 <td><strong>Last name</strong></td>
