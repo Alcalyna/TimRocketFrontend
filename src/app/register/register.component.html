@@ -11,38 +11,38 @@
         <div class="content-container-with-padding z-depth-4">
 
           <div class="row">
-            <form class="col s12">
+            <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="createMemberForm">
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
+                  <input id="first_name" type="text" class="validate" formControlName="firstName">
                   <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
+                  <input id="last_name" type="text" class="validate" formControlName="lastName">
                   <label for="last_name">Last Name</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" placeholder="(used to sign in)" type="email" class="validate">
+                  <input id="email" placeholder="(used to sign in)" type="email" class="validate" formControlName="email">
                   <label for="email">Email</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
+                  <input id="password" type="password" class="validate" formControlName="password">
                   <label for="password">Password</label>
                 </div>
               </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate">
-                  <label for="passwordVerification">Password (again)</label>
-                </div>
-              </div>
+              <!--              <div class="row">-->
+              <!--                <div class="input-field col s12">-->
+              <!--                  <input id="passwordVerification" type="password" class="validate">-->
+              <!--                  <label for="passwordVerification">Password (again)</label>-->
+              <!--                </div>-->
+              <!--              </div>-->
 
               <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text">Register<i class="material-icons right">send</i></a>
+                <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text">Register<i class="material-icons right">send</i></button>
               </div>
             </form>
           </div>
@@ -52,16 +52,19 @@
     </div>
 
   </div>
+
+  <div *ngIf="firstname.errors?.['required']">
+    <p>A firstname is required</p>
+  </div>
+  <div *ngIf="lastname.errors?.['required']">
+    <p>A firstname is required</p>
+  </div>
+  <div *ngIf="email.errors?.['required']">
+    <p>A firstname is required</p>
+  </div>
+  <div *ngIf="password.errors?.['required']">
+    <p>A firstname is required</p>
+  </div>
+
 </main>
-
-
-
-
-
-<!--  Scripts-->
-<script src="js/jquery-3.5.0.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-
-
 

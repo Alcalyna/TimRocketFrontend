@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm!: FormGroup;
+  message!: string;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private router: Router) {
   }
 
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: '',
+      password: ''
+    })
+  }
+
+  onSubmit(loginData: any) {
+    console.log(loginData)
+    this.keycloakService.logIn(loginData)
+      .subscribe(_ => this.message = 'Success!', err => this.message = 'Wrong username and/or password!')
+  }
+
+  reset() {
+  }
 }

@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {HomeComponent} from "./home/home.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
 
   ],
-  providers: [],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   exports: [
     HomeComponent
   ],
