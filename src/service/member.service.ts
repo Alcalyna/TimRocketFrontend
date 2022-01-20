@@ -3,7 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {map, Observable} from 'rxjs';
 import {Member} from "../model/Member";
-import {catchError} from "rxjs/operators";
+/*import { plainToClass } from 'class-transformer';*/
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,7 @@ export class MemberService {
     return this.http.post<Member>(this.url, member);
   }
 
-  getMemberBy(email: string) {
+  getMemberBy(email: string): Observable<Member> {
     return this.http.get<Member>(`${this.url}/${email}`);
   }
-
 }
