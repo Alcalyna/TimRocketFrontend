@@ -1,7 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 
 import {MemberService} from "../../service/member.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {Member} from "../../model/Member";
 import {Router} from "@angular/router";
 
@@ -14,12 +22,21 @@ export class RegisterComponent implements OnInit {
 
   public error: any;
 
+  checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => {
+    // @ts-ignore
+    let pass = group.get('password').value;
+    // @ts-ignore
+    let confirmPass = group.get('passwordVerification').value
+    return pass === confirmPass ? null : { notSame: true }
+  }
+
   createMemberForm: FormGroup = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(25)]],
     lastName: ['', [Validators.required, Validators.maxLength(25)]],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
-  })
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")]],
+    passwordVerification: ['']
+  }, { validators: this.checkPasswords })
 
   constructor(private memberService: MemberService,
               private formBuilder: FormBuilder,
@@ -42,12 +59,12 @@ export class RegisterComponent implements OnInit {
       );
   }
 
-  get firstname(): FormControl {
-    return this.createMemberForm.get('firstname') as FormControl;
+  get firstName(): FormControl {
+    return this.createMemberForm.get('firstName') as FormControl;
   }
 
-  get lastname(): FormControl {
-    return this.createMemberForm.get('lastname') as FormControl;
+  get lastName(): FormControl {
+    return this.createMemberForm.get('lastName') as FormControl;
   }
 
   get email(): FormControl {
@@ -56,6 +73,10 @@ export class RegisterComponent implements OnInit {
 
   get password(): FormControl {
     return this.createMemberForm.get('password') as FormControl;
+  }
+
+  get passwordVerification(): FormControl {
+    return this.createMemberForm.get('passwordVerification') as FormControl;
   }
 
 }
