@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {KeycloakService} from "../keycloak/keycloak.service";
@@ -29,10 +29,6 @@ export class LoginComponent implements OnInit {
       .subscribe(_ => this.message = 'Success!', err => this.message = 'Wrong username and/or password!')
   }
 
-  reset(){
-
+  reset() {
   }
-
-
-
 }

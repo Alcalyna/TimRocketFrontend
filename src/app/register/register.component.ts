@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {MemberService} from "../../service/member.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -12,14 +12,15 @@ import {Member} from "../../model/Member";
 export class RegisterComponent implements OnInit {
 
   createMemberForm: FormGroup = this.formBuilder.group({
-    firstname: ['', [Validators.required, Validators.maxLength(25)]],
-    lastname: ['', [Validators.required, Validators.maxLength(25)]],
+    firstName: ['', [Validators.required, Validators.maxLength(25)]],
+    lastName: ['', [Validators.required, Validators.maxLength(25)]],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
     password: ['', Validators.required]
   })
 
   constructor(private memberService: MemberService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
   }
@@ -31,19 +32,19 @@ export class RegisterComponent implements OnInit {
       .subscribe(_ => console.log("success!"));
   }
 
-  get firstname() : FormControl {
+  get firstname(): FormControl {
     return this.createMemberForm.get('firstname') as FormControl;
   }
 
-  get lastname() : FormControl {
+  get lastname(): FormControl {
     return this.createMemberForm.get('lastname') as FormControl;
   }
 
-  get email() : FormControl {
+  get email(): FormControl {
     return this.createMemberForm.get('email') as FormControl;
   }
 
-  get password() : FormControl {
+  get password(): FormControl {
     return this.createMemberForm.get('password') as FormControl;
   }
 
