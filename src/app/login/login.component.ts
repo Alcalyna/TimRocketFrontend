@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {KeycloakService} from "../keycloak/keycloak.service";
 
@@ -12,23 +12,33 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   message!: string;
+  ctlEmail!: FormControl;
+  ctlPassWord!: FormControl;
 
-  constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private keycloakService: KeycloakService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
+    this.ctlEmail = this.formBuilder.control("", [Validators.required, Validators.email, Validators.maxLength(50)]);
+    this.ctlPassWord = this.formBuilder.control("", [Validators.required, Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,25}$")]);
     this.loginForm = this.formBuilder.group({
-      email: '',
-      password: ''
+      email: this.ctlEmail,
+      password: this.ctlPassWord
     })
   }
 
   onSubmit(loginData: any) {
     console.log(loginData)
     this.keycloakService.logIn(loginData)
-      .subscribe(_ => this.message = 'Success!', err => this.message = 'Wrong username and/or password!')
+      .subscribe(_ => this.router.navigateByUrl('/'));
+    console.log(this.keycloakService.getUsername());
   }
+
 
   reset() {
   }
+
 }
