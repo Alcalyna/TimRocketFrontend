@@ -2,12 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {HttpKeycloakService} from "./http-keycloak.service";
 import {tap} from "rxjs/operators";
-
 import * as JWT from "jwt-decode";
-
-
 import {KeycloakToken} from "./keycloak-token";
 import {KeycloakTokenResponse} from "./keycloakTokenResponse";
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +27,7 @@ export class KeycloakService {
     return localStorage.getItem(this.token_key_name);
   }
 
-  isLoggedIn() : boolean {
+  isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
 
@@ -38,7 +36,7 @@ export class KeycloakService {
       .pipe(tap(response => this.setToken(response.access_token)));
   }
 
-  logout() : void {
+  logout(): void {
     localStorage.removeItem(this.token_key_name);
     this.sendSignal();
   }
@@ -48,7 +46,7 @@ export class KeycloakService {
     this.sendSignal();
   }
 
-  sendSignal() : void {
+  sendSignal(): void {
     this._loggedInUser$.next(this.getUsername());
   }
 
