@@ -16,7 +16,7 @@ export class KeycloakService {
 
   private readonly token_key_name = 'access_token';
   private _loggedInUser$: Subject<string | null> = new Subject();
-  private currentUser!: Observable<Member>;
+  private currentUser: Subject<Member> = new Subject<Member>();
 
   constructor(
     private httpKeycloakService: HttpKeycloakService,
@@ -36,7 +36,7 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-    this.currentUser = this.memberService.getMemberBy(loginData.email);
+    this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }
