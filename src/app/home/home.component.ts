@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Member} from "../../model/Member";
+import {KeycloakService} from "../keycloak/keycloak.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  member$!: Observable<Member>;
+
+  constructor(private keyCloakService: KeycloakService) { }
 
   ngOnInit(): void {
+    this.member$ = this.keyCloakService.currentMember;
   }
 
 }

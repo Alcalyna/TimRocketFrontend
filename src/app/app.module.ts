@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 
@@ -30,6 +31,7 @@ import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
 
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
