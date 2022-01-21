@@ -10,12 +10,13 @@ import {Observable} from "rxjs";
 })
 export class HomeComponent implements OnInit {
 
-  member$!: Observable<Member>;
+  loggedInUser!: Member;
 
   constructor(private keyCloakService: KeycloakService) { }
 
   ngOnInit(): void {
-    this.member$ = this.keyCloakService.currentMember;
+    this.keyCloakService.currentMember
+      .subscribe(member => this.loggedInUser = member);
   }
 
 }
