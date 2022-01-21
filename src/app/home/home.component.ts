@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
 })
 export class HomeComponent implements OnInit {
 
-  member$!: Observable<Member>;
+  // @ts-ignore
+  member$!: Observable<Member> | async;
 
   constructor(private keyCloakService: KeycloakService) { }
 
