@@ -31,12 +31,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData: any) {
-    console.log(loginData)
+    // console.log(loginData)
     this.keycloakService.logIn(loginData)
-      .subscribe(_ => this.router.navigateByUrl('/'));
-    console.log(this.keycloakService.getUsername());
-
-    this.router.navigate(['home'])
+      .subscribe(_ => this.router.navigateByUrl('/profile'));
+    // console.log(this.keycloakService.getUsername());
   }
 
 
