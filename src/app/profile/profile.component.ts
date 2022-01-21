@@ -22,6 +22,4 @@ export class ProfileComponent implements OnInit {
     this.keycloackService.currentMember.subscribe(member => this.currentMember = member);
   }
 
-
-
 }
