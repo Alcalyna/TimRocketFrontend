@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
+
 import {Member} from "../../../model/Member";
 import {KeycloakService} from "../../keycloak/keycloak.service";
+import {async, Observable, tap} from "rxjs";
+
 
 @Component({
   selector: 'app-header',
@@ -12,14 +14,24 @@ export class HeaderComponent implements OnInit {
 
   loggedInUser!: Member;
 
+  currentUser$! : Observable<Member>
+
+
   constructor(
     private keyCloakService: KeycloakService
   ) { }
 
   ngOnInit(): void {
-    this.keyCloakService.currentMember
-      .subscribe(member => this.loggedInUser = member);
-    console.log(this.loggedInUser.firstName)
+
+
+    this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
   }
+
+
+
+  clickLogin() {
+
+  }
+
 
 }
