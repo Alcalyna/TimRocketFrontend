@@ -27,27 +27,27 @@
                  alt="Profile Picture">
           </div>
           <div class="col l10 m12 s12">
-            <table *ngFor="let member of currentMember" class="highlight">
+            <table class="highlight">
               <tbody>
               <tr>
                 <td><strong>First name</strong></td>
-                <td>{{member.firstName}}</td>
+                <td > {{ currentMember.firstName }}</td>
               </tr>
               <tr>
                 <td><strong>Last name</strong></td>
-                <td>Leroy</td>
+                <td>{{ currentMember.lastName }}</td>
               </tr>
               <tr>
                 <td><strong>Email</strong></td>
-                <td>anna.leroy@gmail.com</td>
+                <td>{{ currentMember.email }}</td>
               </tr>
               <tr>
-                <td><strong>Class</strong></td>
-                <td>4 - Latin Science</td>
+                <td><strong>Company</strong></td>
+                <td>{{ currentMember.company}}</td>
               </tr>
               <tr>
                 <td><strong>CodeCoach role</strong></td>
-                <td>Coachee</td>
+                <td>{{ currentMember.role }}</td>
               </tr>
               </tbody>
             </table>

@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
     this.keycloakService.logIn(loginData)
       .subscribe(_ => this.router.navigateByUrl('/'));
     console.log(this.keycloakService.getUsername());
+
+    this.router.navigate(['home'])
   }
 
 
