@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Member} from "../../model/Member";
 import {KeycloakService} from "../keycloak/keycloak.service";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +10,18 @@ import {KeycloakService} from "../keycloak/keycloak.service";
 })
 export class ProfileComponent implements OnInit {
 
-  currentMember! : Member;
-  member! : Member
+  // @ts-ignore
+  currentUser$! : Observable<Member>
 
-  constructor(private keycloackService : KeycloakService) {}
+  constructor(
+    private keyCloakService: KeycloakService
+  ) { }
 
   ngOnInit(): void {
-    this.keycloackService.currentMember.subscribe(member => this.currentMember = member);
+    // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
+    this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
+    console.log(this.currentUser$)
   }
+
 
 }

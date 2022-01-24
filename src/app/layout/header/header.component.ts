@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
    // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
     this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
+    console.log(this.currentUser$)
   }
 
 
