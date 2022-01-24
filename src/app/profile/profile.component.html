@@ -31,31 +31,23 @@
               <tbody>
               <tr>
                 <td><strong>First name</strong></td>
-                <td *ngIf="currentUser$ | async as user"> {{ user.firstName }}</td>
+                <td> {{ currentUser?.firstName }} </td>
               </tr>
               <tr>
                 <td><strong>Last name</strong></td>
-                <td *ngIf="currentUser$ | async as user"> {{ user.lastName }}</td>
-
-                <!--                <td>{{ currentUser$.lastName }}</td> -->
+                <td> {{ currentUser?.lastName }} </td>
               </tr>
               <tr>
                 <td><strong>Email</strong></td>
-                <td *ngIf="currentUser$ | async as user"> {{ user.email }}</td>
-
-                <!--    <td>{{ currentMember?.email }}</td> -->
+                    <td> {{ currentUser?.email }} </td>
               </tr>
               <tr>
                 <td><strong>Company</strong></td>
-                <td *ngIf="currentUser$ | async as user"> {{ user.company }}</td>
-
-                <!--     <td>{{ currentMember?.company}}</td> -->
+                     <td> {{ currentUser?.company }} </td>
               </tr>
               <tr>
                 <td><strong>CodeCoach role</strong></td>
-                <td *ngIf="currentUser$ | async as user"> {{ user.role }}</td>
-
-                <!--     <td>{{ currentMember?.role }}</td> -->
+                     <td> {{ currentUser?.role }} </td>
               </tr>
               </tbody>
             </table>

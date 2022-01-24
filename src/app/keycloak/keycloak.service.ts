@@ -36,7 +36,7 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-    this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
+    //this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }
@@ -59,11 +59,12 @@ export class KeycloakService {
     this._loggedInUser$.next(this.getUsername());
   }
 
-  public getUsername(): string | null {
+  public getUsername(): string {
     let token = this.getToken();
     if (token) {
       return (JWT.default(token) as KeycloakToken).preferred_username
     }
-    return null;
+    return "";
+    //this returned null, so maybe refactoring is needed.
   }
 }
