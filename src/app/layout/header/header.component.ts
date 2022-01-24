@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit {
     console.log(this.currentUser$)
   }
 
+  logout(){
+    this.keyCloakService.logout();
+  }
+
 
 
   clickLogin() {

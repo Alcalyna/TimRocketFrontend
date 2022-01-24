@@ -15,6 +15,8 @@
         </ng-template>
         <li><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
           class="material-icons right">person_add</i></a></li>
+        <li><a class="waves-effect waves-light teal lighten-3 btn black-text" [routerLink]="['/']" (click)="logout()">Log out<i
+          class="material-icons right">power_settings_new</i></a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
@@ -25,6 +27,7 @@
           class="material-icons right">person</i></a></li>
         <li><a class="waves-effect waves-light teal lighten-3 btn black-text">Register<i
           class="material-icons right">person_add</i></a></li>
+
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
