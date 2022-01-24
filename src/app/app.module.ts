@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { UserNavComponent } from './user-nav/user-nav.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    UserNavComponent,
 
   ],
   imports: [
@@ -37,7 +39,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   exports: [
-    HomeComponent
+    HomeComponent,
+    UserNavComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MemberInformationDTO} from "../../model/MemberInformationDTO";
-import {MemberInformationDTOService} from "../../service/member-information-dto.service";
-import {MemberService} from "../../service/member.service";
-import {Observable} from "rxjs";
 import {Member} from "../../model/Member";
 import {KeycloakService} from "../keycloak/keycloak.service";
 

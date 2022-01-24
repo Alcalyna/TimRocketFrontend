@@ -7,4 +7,5 @@ export interface Member {
   password : string
   role : string
   company : string
+  pictureUrl : string
 }
