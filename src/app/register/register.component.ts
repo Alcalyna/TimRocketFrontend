@@ -18,8 +18,9 @@ export class RegisterComponent implements OnInit {
   createMemberForm: FormGroup = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(25)]],
     lastName: ['', [Validators.required, Validators.maxLength(25)]],
+    company: ['', Validators.maxLength(25)],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$")]],
     passwordVerification: ['']
   }, {validators: ConfirmedValidator('password', 'passwordVerification')})
 
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
     const memberToCreate = this.createMemberForm.value as Member;
     this.memberService.createMember(memberToCreate)
       .subscribe(success => {
-          console.log("success");
+          this.router.navigate(['login']);
         }
         ,
         error => {
@@ -62,6 +63,10 @@ export class RegisterComponent implements OnInit {
 
   get passwordVerification(): FormControl {
     return this.createMemberForm.get('passwordVerification') as FormControl;
+  }
+
+  get company(): FormControl {
+    return this.createMemberForm.get('company') as FormControl;
   }
 
 }
