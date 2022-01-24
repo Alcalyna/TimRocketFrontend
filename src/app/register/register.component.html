@@ -4,57 +4,90 @@
       <div class="col s12 m12">
         <h1 class="center teal-text lighten-3">Register</h1>
         <div class="content-container-with-padding z-depth-4">
-          <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="createMemberForm">
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate" formControlName="firstname">
-                <label for="first_name">First Name</label>
+          <div class="row">
+            <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="createMemberForm">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="first_name" type="text" class="validate" formControlName="firstName">
+                  <label for="first_name">First Name</label>
+                  <div *ngIf="firstName.errors?.['required'] && !firstName.pristine">
+                    <p>A first name is required.</p>
+                  </div>
+                  <div *ngIf="firstName.errors?.['maxlength']">
+                    <p>A first name can only be 25 characters long</p>
+                  </div>
+                  <div *ngIf="error" class="error">{{error.error.firstName}}</div>
+                </div>
+                <div class="input-field col s6">
+                  <input id="last_name" type="text" class="validate" formControlName="lastName">
+                  <label for="last_name">Last Name</label>
+                  <div *ngIf="lastName.errors?.['required'] && !lastName.pristine">
+                    <p>A last name is required.</p>
+                  </div>
+                  <div *ngIf="lastName.errors?.['maxlength']">
+                    <p>A last name can only be 25 characters long</p>
+                  </div>
+                  <div *ngIf="error" class="error">{{error.error.lastName}}</div>
+                </div>
               </div>
-              <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate" formControlName="lastname">
-                <input id="email" placeholder="(used to sign in)" type="email" class="validate"
-                       formControlName="email">
-                <label for="email">Email</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" placeholder="(used to sign in)" type="email" class="validate"
+                         formControlName="email">
+                  <label for="email">Email</label>
+                  <div *ngIf="email.errors?.['required'] && !email.pristine">
+                    <p>An email is required.</p>
+                  </div>
+                  <div *ngIf="email.errors?.['maxlength']">
+                    <p>An email can only be 50 characters long</p>
+                  </div>
+                  <div *ngIf="email.errors?.['email']">
+                    <p>An email should contain an @</p>
+                  </div>
+                  <div *ngIf="error" class="error">{{error.error.email}}</div>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="password" type="password" class="validate" formControlName="password">
-                <label for="password">Password</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" formControlName="password">
+                  <label for="password">Password</label>
+                </div>
+                <div *ngIf="password.errors?.['required'] && !password.pristine">
+                  <p>A password is required.</p>
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                  <p>A password should have at least 8 characters</p>
+                </div>
+                <div *ngIf="password.errors?.['pattern']">
+                  <p>A password should contain at least one capital, one lowercase letter and a number</p>
+                </div>
+                <div *ngIf="error" class="error">{{error.error.password}}</div>
               </div>
-            </div>
-            <!--              <div class="row">-->
-            <!--                <div class="input-field col s12">-->
-            <!--                  <input id="passwordVerification" type="password" class="validate">-->
-            <!--                  <label for="passwordVerification">Password (again)</label>-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <div class="row right-align">
-              <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text">Register<i
-                class="material-icons right">send</i></button>
-            </div>
-          </form>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="passwordVerification" type="password" class="validate"
+                         formControlName="passwordVerification">
+                  <label for="passwordVerification">Password (again)</label>
+                </div>
+                <div *ngIf="passwordVerification.errors?.['required'] && !passwordVerification.pristine">
+                  <p>Please provide your password again</p>
+                </div>
+                <div *ngIf="passwordVerification.errors?.['confirmedValidator']">
+                  <p>Password and password verification must be the same</p>
+                </div>
+              </div>
+              <div class="row right-align">
+                <button type="submit" [disabled]="!createMemberForm.valid"
+                        class="waves-effect waves-light yellow darken-2 btn-large black-text">
+                  Register
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-<!--  <div *ngIf="firstname.errors?.['required']">-->
-<!--    <p>A firstname is required</p>-->
-<!--  </div>-->
-<!--  <div *ngIf="lastname.errors?.['required']">-->
-<!--    <p>A firstname is required</p>-->
-<!--  </div>-->
-<!--  <div *ngIf="email.errors?.['required']">-->
-<!--    <p>A firstname is required</p>-->
-<!--  </div>-->
-<!--  <div *ngIf="password.errors?.['required']">-->
-<!--    <p>A firstname is required</p>-->
-<!--  </div>-->
 </main>
-
-<!--  Scripts-->
-<script src="js/jquery-3.5.0.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-
 

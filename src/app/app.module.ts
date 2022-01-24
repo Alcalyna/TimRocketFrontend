@@ -10,8 +10,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
-
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
+
 
   ],
   imports: [
@@ -30,11 +33,13 @@ import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
 
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   exports: [
-    HomeComponent
+    HomeComponent,
+
   ],
   bootstrap: [AppComponent]
 })

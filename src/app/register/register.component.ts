@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {MemberService} from "../../service/member.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Member} from "../../model/Member";
+import {Router} from "@angular/router";
+import {ConfirmedValidator} from "./ConfirmedValidator";
 
 @Component({
   selector: 'app-register',
@@ -11,40 +13,55 @@ import {Member} from "../../model/Member";
 })
 export class RegisterComponent implements OnInit {
 
+  public error: any;
+
   createMemberForm: FormGroup = this.formBuilder.group({
-    firstname: ['', [Validators.required, Validators.maxLength(25)]],
-    lastname: ['', [Validators.required, Validators.maxLength(25)]],
+    firstName: ['', [Validators.required, Validators.maxLength(25)]],
+    lastName: ['', [Validators.required, Validators.maxLength(25)]],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
-    password: ['', Validators.required]
-  })
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")]],
+    passwordVerification: ['']
+  }, {validators: ConfirmedValidator('password', 'passwordVerification')})
 
   constructor(private memberService: MemberService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    console.log("entry onsubmit")
     const memberToCreate = this.createMemberForm.value as Member;
     this.memberService.createMember(memberToCreate)
-      .subscribe(_ => console.log("success!"));
+      .subscribe(success => {
+          console.log("success");
+        }
+        ,
+        error => {
+          this.error = error;
+        }
+      );
   }
 
-  get firstname() : FormControl {
-    return this.createMemberForm.get('firstname') as FormControl;
+  get firstName(): FormControl {
+    return this.createMemberForm.get('firstName') as FormControl;
   }
 
-  get lastname() : FormControl {
-    return this.createMemberForm.get('lastname') as FormControl;
+  get lastName(): FormControl {
+    return this.createMemberForm.get('lastName') as FormControl;
   }
 
-  get email() : FormControl {
+  get email(): FormControl {
     return this.createMemberForm.get('email') as FormControl;
   }
 
-  get password() : FormControl {
+  get password(): FormControl {
     return this.createMemberForm.get('password') as FormControl;
+  }
+
+  get passwordVerification(): FormControl {
+    return this.createMemberForm.get('passwordVerification') as FormControl;
   }
 
 }
