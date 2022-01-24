@@ -19,9 +19,9 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
-    if (this.router.url === '/login') {
-      return next.handle(req);
-    }
+    // if (this.router.url === '/login') {
+    //   return next.handle(req);
+    // }
 
     req = req.clone({
       setHeaders: {
