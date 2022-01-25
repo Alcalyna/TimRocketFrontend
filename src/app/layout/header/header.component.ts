@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../../../model/Member";
+import {User} from "../../../model/User";
 import {KeycloakService} from "../../keycloak/keycloak.service";
 import {async, Observable, tap} from "rxjs";
-import {MemberService} from "../../../service/member.service";
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -10,29 +10,22 @@ import {MemberService} from "../../../service/member.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser!: Member;
-  name: String = "abc";
+
+  currentUser!: User;
 
   constructor(
-    private keyCloakService: KeycloakService,
-    private memberService: MemberService
+    private keyCloakService: KeycloakService
   ) {
   }
 
   ngOnInit(): void {
-    // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
-
-    // this.keyCloakService.currentMember.pipe(tap(() => console.log("debug")
-    // )).subscribe(user => this.currentUser = user);
-    // console.log(this.currentUser);
-    // console.log(this.keyCloakService);
-
-
-
-    this.memberService.getMemberBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
-  }
-  clickLogin() {
-
   }
 
+  isLoggedIn(){
+    return this.keyCloakService.isLoggedIn();
+  }
+
+  logout(){
+    this.keyCloakService.logout();
+  }
 }

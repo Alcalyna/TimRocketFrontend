@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {KeycloakService} from "../keycloak/keycloak.service";
-import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -32,13 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData: any) {
-    // console.log(loginData)
     this.keycloakService.logIn(loginData)
       .subscribe(_ => this.router.navigateByUrl('/profile'));
     console.log(this.keycloakService.getUsername());
-    // this.keycloakService.logIn(loginData).pipe(catchError(async (error) => alert(error.message)))
-    //   .subscribe(_ => this.router.navigateByUrl('/profile'));
-    // console.log(this.keycloakService.getUsername());
   }
 
   reset() {
