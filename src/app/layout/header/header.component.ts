@@ -10,32 +10,6 @@ import {MemberService} from "../../../service/member.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  //loggedInUser : Member | undefined;
-//   currentUser$! : Observable<Member>;
-//
-//   constructor(
-//     private keyCloakService: KeycloakService,
-//     private memberService: MemberService
-//   ) { }
-//
-//   ngOnInit(): void {
-//    // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
-//    //  this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
-//    //  console.log(this.currentUser$)
-//
-//     // this.memberService.getMemberBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser$ = user);
-//     this.currentUser$ = this.memberService.getMemberBy(this.keyCloakService.getUsername());
-//   }
-//
-//
-//
-//   clickLogin() {
-//
-//   }
-//
-//
-// }
   currentUser!: Member;
   name: String = "abc";
 

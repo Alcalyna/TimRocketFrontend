@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "../home/home.component";
+import { UserNavComponent } from './user-nav/user-nav.component';
 
 
 
@@ -13,6 +14,7 @@ import {HomeComponent} from "../home/home.component";
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    UserNavComponent,
 
 
   ],

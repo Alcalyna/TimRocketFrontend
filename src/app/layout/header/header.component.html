@@ -6,20 +6,21 @@
         <li><a [routerLink]="['/']">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
-<!--        <li *ngIf="currentUser$ | async as currentUser; else notLoggedIn">Logged in as {{currentUser}}</li>-->
-        <li *ngIf="currentUser">Logged in as {{currentUser?.firstName}}</li>
-<!--        <ng-template  *ngIf="currentUser.firstName == null">-->
-          <li *ngIf="!currentUser">
-            <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" (click)="clickLogin()">Log in<i
-            class="material-icons right">person</i></a>
+        <ng-container *ngIf="!currentUser">
+            <li>
+              <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" (click)="clickLogin()">Log in<i
+              class="material-icons right">person</i></a>
+            </li>
+          <li *ngIf="!currentUser"><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
+                      class="material-icons right">person_add</i></a></li>
+        </ng-container>
+        <ng-container *ngIf="currentUser">
+          <li *ngIf="currentUser">
+            <a class="waves-effect waves-light teal lighten-3 btn black-text">Logout</a>
           </li>
-<!--        </ng-template>-->
-        <li *ngIf="!currentUser"><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
-          class="material-icons right">person_add</i></a></li>
-        <li *ngIf="currentUser">
-          <a class="waves-effect waves-light teal lighten-3 btn black-text">Logout</a>
-        </li>
+        </ng-container>
       </ul>
+
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Home</a></li>
@@ -36,12 +37,5 @@
 
 </header>
 <div *ngIf="currentUser" class="nav-content yellow darken-2">
-  <div class="nav-content yellow darken-2">
-        <div class="container">
-          <ul class="tabs tabs-transparent">
-            <li class="tab"><a class="black-text" href="#test1" [routerLink]="['profile']">My Profile</a></li>
-            <li class="tab"><a class="grey-text text-darken-2" href="#test2">Find a coach</a></li>
-          </ul>
-        </div>
-  </div>
+  <app-user-nav></app-user-nav>
 </div>
