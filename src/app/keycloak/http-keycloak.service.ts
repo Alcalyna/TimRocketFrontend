@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {KeycloakTokenResponse} from "./keycloakTokenResponse";
-import {Member} from "../../model/Member";
+import {User} from "../../model/User";
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class HttpKeycloakService {
     body.set('email', loginData.email);
     body.set('password', loginData.password);
     body.set('client_id', 'CodeCoachTimRocket');
-    body.set('client_secret', '37ceed79-e027-4c98-a4d4-e691bc564574');
+   // body.set('client_secret', '37ceed79-e027-4c98-a4d4-e691bc564574');
     body.set('grant_type', 'password');
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions);
   }

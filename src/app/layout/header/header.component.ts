@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../../../model/Member";
+import {User} from "../../../model/User";
 import {KeycloakService} from "../../keycloak/keycloak.service";
 import {async, Observable, tap} from "rxjs";
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -10,23 +11,21 @@ import {async, Observable, tap} from "rxjs";
 })
 export class HeaderComponent implements OnInit {
 
-  //loggedInUser : Member | undefined;
-  currentUser$! : Observable<Member>
+  currentUser!: User;
 
   constructor(
     private keyCloakService: KeycloakService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-   // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
-    this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
   }
 
-
-
-  clickLogin() {
-
+  isLoggedIn(){
+    return this.keyCloakService.isLoggedIn();
   }
 
-
+  logout(){
+    this.keyCloakService.logout();
+  }
 }

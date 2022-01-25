@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../../model/Member";
+import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {Observable} from "rxjs";
 
@@ -9,13 +9,9 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  member$!: Observable<Member>;
-
-  constructor(private keyCloakService: KeycloakService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.member$ = this.keyCloakService.currentMember;
   }
 
 }
