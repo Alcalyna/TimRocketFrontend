@@ -10,28 +10,21 @@ import {async, Observable, tap} from "rxjs";
 })
 export class HeaderComponent implements OnInit {
 
-  //loggedInUser : Member | undefined;
-  currentUser$! : Observable<Member>
 
   constructor(
     private keyCloakService: KeycloakService
   ) { }
 
   ngOnInit(): void {
-   // this.keyCloakService.currentMember.subscribe(member => this.loggedInUser = member);
-    this.currentUser$ = this.keyCloakService.currentMember.pipe(tap (user => console.log(" user logged in? " + user))) ;
-    console.log(this.currentUser$)
   }
-
+  isLoggedIn(){
+    return this.keyCloakService.isLoggedIn();
+  }
   logout(){
     this.keyCloakService.logout();
   }
 
 
-
-  clickLogin() {
-
-  }
 
 
 }

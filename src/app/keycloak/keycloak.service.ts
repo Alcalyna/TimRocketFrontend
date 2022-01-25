@@ -36,7 +36,7 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-    //this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
+    this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }

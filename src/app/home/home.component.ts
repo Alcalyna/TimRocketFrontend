@@ -13,11 +13,15 @@ export class HomeComponent implements OnInit {
   // @ts-ignore
   member$!: Observable<Member> | async;
 
+  currentUser!: Member
+
   constructor(private keyCloakService: KeycloakService) { }
 
   ngOnInit(): void {
     this.member$ = this.keyCloakService.currentMember;
     console.log(this.member$)
+
+    this.keyCloakService.currentMember.subscribe(user => this.currentUser);
   }
 
 }

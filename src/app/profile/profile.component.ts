@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   currentUser!: Member;
   name: String = "abc";
 
+  loggedInUser! : boolean
+
   constructor(
     private keyCloakService: KeycloakService,
     private memberService: MemberService
@@ -30,9 +32,11 @@ export class ProfileComponent implements OnInit {
     // console.log(this.currentUser);
     // console.log(this.keyCloakService);
 
-
-
+    console.log(this.keyCloakService.getUsername())
     this.memberService.getMemberBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
+
+    this.loggedInUser = this.keyCloakService.isLoggedIn()
+    console.log(this.loggedInUser)
   }
 
 

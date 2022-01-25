@@ -6,16 +6,14 @@
         <li><a [routerLink]="['/']">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
-        <li *ngIf="currentUser$ | async as currentUser; else notLoggedIn">Logged in as {{currentUser}}</li>
-        <ng-template #notLoggedIn>
-          <li>
-            <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" (click)="clickLogin()">Log in<i
+          <li *ngIf="!isLoggedIn()">
+            <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" >Log in<i
             class="material-icons right">person</i></a>
           </li>
-        </ng-template>
+
         <li><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
           class="material-icons right">person_add</i></a></li>
-        <li><a class="waves-effect waves-light teal lighten-3 btn black-text" [routerLink]="['/']" (click)="logout()">Log out<i
+        <li *ngIf="isLoggedIn()"><a class="waves-effect waves-light teal lighten-3 btn black-text" [routerLink]="['/']" (click)="logout()">Log out<i
           class="material-icons right">power_settings_new</i></a></li>
       </ul>
 
@@ -34,7 +32,7 @@
   </nav>
 
 </header>
-<div *ngIf="currentUser$ | async as currentUser;" class="nav-content yellow darken-2">
+<div *ngIf="isLoggedIn()"  class="nav-content yellow darken-2">
   <div class="nav-content yellow darken-2">
         <div class="container">
           <ul class="tabs tabs-transparent">
