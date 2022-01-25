@@ -27,4 +27,8 @@ export class UserService {
   getUserBy(email: string): Observable<User> {
     return this.http.get<User>(`${this.url}/${email}`);
   }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/?id=${id}`)
+  }
 }
