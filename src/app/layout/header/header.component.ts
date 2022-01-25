@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../model/User";
 import {KeycloakService} from "../../keycloak/keycloak.service";
-import {async, Observable, tap} from "rxjs";
-import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-header',

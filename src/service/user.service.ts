@@ -27,4 +27,8 @@ export class UserService {
   getUserBy(email: string): Observable<User> {
     return this.http.get<User>(`${this.url}/${email}`);
   }
+
+  editProfile(user: User): Observable<User> {
+    return this.http.put<User>(`${this.url}/${user?.userId!}`, user);
+  }
 }
