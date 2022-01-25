@@ -67,4 +67,5 @@ export class KeycloakService {
     return "";
     //this returned null, so maybe refactoring is needed.
   }
+
 }

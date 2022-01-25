@@ -1,4 +1,6 @@
+
 <div class="row">
+
   <div class="col s12 m2">
     <div class="content-container">
       <h6>My Coach Profile</h6>
@@ -10,14 +12,16 @@
       </div>
     </div>
   </div>
-  <div class="col s12 m12">
+
+  <div class="col s12 m10 l10">
     <div *ngIf="user" class="content-container">
+
       <section class="card-panel grey lighten-5">
         <h5>Profile Information</h5>
         <div class="divider"></div>
         <div class="row">
           <div class="col l2 m2 s12">
-            <img src="img/dummy/profile-picture-coach.jpg" class="responsive-img circle"
+            <img src="{{user.pictureUrl}}" class="responsive-img circle"
                  alt="Profile Picture">
           </div>
           <div class="col l10 m12 s12">
@@ -29,107 +33,108 @@
               </tr>
               <tr>
                 <td><strong>Last name</strong></td>
-                <td>Leroy</td>
+                <td>{{user.lastName}}</td>
               </tr>
               <tr>
                 <td><strong>Email</strong></td>
-                <td>antoine.leroy@gmail.com</td>
+                <td>{{user.email}}</td>
               </tr>
               <tr>
-                <td><strong>Class</strong></td>
-                <td>4 - Latin Science</td>
+                <td><strong>Company</strong></td>
+                <td>{{user.company}}</td>
               </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
-      <div class="divider"></div>
-      <section class="card-panel grey lighten-5">
-        <div class="right">
-          <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
-            class="material-icons left">edit</i>Edit</a>
-        </div>
-        <h5>Coach Information</h5>
-        <div class="divider"></div>
-        <div class="row">
-          <div class="col l12 m12 s12">
-            <table class="highlight">
-              <tbody>
-              <tr>
-                <td><strong>Coach XP</strong></td>
-                <td>
-                  <div class="center">
-                                            <span class="new badge teal lighten-3 teal-text text-darken-3"
-                                                  data-badge-caption="(Silver)">300/500</span>
-                  </div>
-                  <div class="progress teal">
-                    <div class="determinate" style="width: 60%"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Introduction</strong></td>
-                <td>My name is Antoine and I'm currently in the 4th grade. I'm mostly interested in
-                  science and math. My strength as a coach is to have a lot of patience while
-                  coaching. Feel free to contact me for a first coaching session.
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Availability</strong></td>
-                <td>I'm usually available on wednesday and Friday after schoool between 16 and 17h.
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-      <div class="divider"></div>
-      <section class="card-panel grey lighten-5">
-        <div class="right">
-          <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
-            class="material-icons left">edit</i>Edit</a>
-        </div>
-        <h5>Coaching topics</h5>
-        <div class="divider"></div>
-        <div class="row">
-          <div class="col s12">
-            <table class="highlight">
-              <tbody>
-              <tr>
-                <td><strong>Mathematics</strong></td>
-                <td>
-                  <div class="center">
-                    <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>
-                    <a class="btn-floating"><i class="material-icons">filter_4</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_5</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_6</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Biology</strong></td>
-                <td>
-                  <div class="center">
-                    <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_4</i></a>
-                    <a class="btn-floating"><i class="material-icons">filter_5</i></a>
-                    <a class="btn-floating"><i class="material-icons">filter_6</i></a>
-                    <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+
+<!--      <div class="divider"></div>-->
+<!--      <section class="card-panel grey lighten-5">-->
+<!--        <div class="right">-->
+<!--          <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i-->
+<!--            class="material-icons left">edit</i>Edit</a>-->
+<!--        </div>-->
+<!--        <h5>Coach Information</h5>-->
+<!--        <div class="divider"></div>-->
+<!--        <div class="row">-->
+<!--          <div class="col l12 m12 s12">-->
+<!--            <table class="highlight">-->
+<!--              <tbody>-->
+<!--              <tr>-->
+<!--                <td><strong>Coach XP</strong></td>-->
+<!--                <td>-->
+<!--                  <div class="center">-->
+<!--                                            <span class="new badge teal lighten-3 teal-text text-darken-3"-->
+<!--                                                  data-badge-caption="(Silver)">300/500</span>-->
+<!--                  </div>-->
+<!--                  <div class="progress teal">-->
+<!--                    <div class="determinate" style="width: 60%"></div>-->
+<!--                  </div>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td><strong>Introduction</strong></td>-->
+<!--                <td>My name is Antoine and I'm currently in the 4th grade. I'm mostly interested in-->
+<!--                  science and math. My strength as a coach is to have a lot of patience while-->
+<!--                  coaching. Feel free to contact me for a first coaching session.-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td><strong>Availability</strong></td>-->
+<!--                <td>I'm usually available on wednesday and Friday after schoool between 16 and 17h.-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--      <div class="divider"></div>-->
+<!--      <section class="card-panel grey lighten-5">-->
+<!--        <div class="right">-->
+<!--          <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i-->
+<!--            class="material-icons left">edit</i>Edit</a>-->
+<!--        </div>-->
+<!--        <h5>Coaching topics</h5>-->
+<!--        <div class="divider"></div>-->
+<!--        <div class="row">-->
+<!--          <div class="col s12">-->
+<!--            <table class="highlight">-->
+<!--              <tbody>-->
+<!--              <tr>-->
+<!--                <td><strong>Mathematics</strong></td>-->
+<!--                <td>-->
+<!--                  <div class="center">-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>-->
+<!--                    <a class="btn-floating"><i class="material-icons">filter_4</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_5</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_6</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>-->
+<!--                  </div>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td><strong>Biology</strong></td>-->
+<!--                <td>-->
+<!--                  <div class="center">-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_4</i></a>-->
+<!--                    <a class="btn-floating"><i class="material-icons">filter_5</i></a>-->
+<!--                    <a class="btn-floating"><i class="material-icons">filter_6</i></a>-->
+<!--                    <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>-->
+<!--                  </div>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
     </div>
   </div>
 </div>
