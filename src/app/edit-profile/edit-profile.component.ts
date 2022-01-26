@@ -3,6 +3,7 @@ import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+
 import {Route} from "@angular/router";
 
 @Component({
@@ -26,9 +27,7 @@ export class EditProfileComponent implements OnInit {
     private keyCloakService: KeycloakService,
     private userService: UserService
   ) {
-  }
 
-  ngOnInit(): void {
     this.ctlFirstName = this.formBuilder.control("",[Validators.maxLength(25), Validators.minLength(2)]);
     this.ctlLastName = this.formBuilder.control("",[Validators.maxLength(25), Validators.minLength(2)]);
     this.ctlEmail = this.formBuilder.control("", [Validators.email, Validators.maxLength(50)]);
@@ -41,9 +40,16 @@ export class EditProfileComponent implements OnInit {
       role: this.ctlRole
     });
 
+    console.log("I am here " + this.currentUser?.firstName)
+
+    this.editForm.patchValue(
+      this.getCurrentUser());
+  }
+
+  ngOnInit(): void {
     this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
-    this.loggedInUser = this.keyCloakService.isLoggedIn();
-    console.log(this.currentUser);
+
+
   }
 
   isAdmin(): boolean {
@@ -51,7 +57,19 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log("It is working! Bitch!");
+    this.editForm.patchValue({
+      firstName: this.currentUser.firstName,
+      lastName: this.currentUser.lastName,
+      email: this.currentUser.email,
+      role: this.currentUser.role
+    });
+    console.log(this.editForm.value);
   }
+
+
+  getCurrentUser(): User{
+     return this.currentUser = this.userService.currentUser
+  }
+
 
 }

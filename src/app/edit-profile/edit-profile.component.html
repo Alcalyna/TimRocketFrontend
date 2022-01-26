@@ -21,21 +21,21 @@
           <form class="col s12" [formGroup]="editForm" >
             <div class="row" >
               <div class="input-field col s12">
-                <input id="firstName" type="text" class="validate" formControlName="firstName" placeholder="{{ currentUser?.firstName }}">
-                <label for="firstName">First Name</label>
+                <input id="firstName" type="text" class="validate" formControlName="firstName" [formControl]="ctlFirstName" >
+                <label for="firstName">First Name: {{currentUser.firstName}}</label>
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be less than 25 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be more than 2 characters</mat-error>
               </div>
 
               <div class="input-field col s12">
-                <input id="lastName" type="text" class="validate" formControlName="lastName" placeholder="{{ currentUser?.lastName }}">
+                <input id="lastName" type="text" class="validate" formControlName="lastName" [formControl]="ctlLastName">
                 <label for="lastName">Last Name</label>
                 <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be less than 25 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be more than 2 characters</mat-error>
               </div>
 
               <div class="input-field col s12">
-                <input id="email" type="text" class="validate" formControlName="email" placeholder="{{ currentUser?.email }}">
+                <input id="email" type="text" class="validate" formControlName="email" [formControl]="ctlEmail">
                 <label for="email">Email</label>
                 <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxLength')">The email length should be less than 50 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">The email format is not correct.</mat-error>

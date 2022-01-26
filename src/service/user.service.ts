@@ -11,6 +11,7 @@ import {User} from "../model/User";
 export class UserService {
 
   url: string
+  currentUser! : User;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.backendUrl}/users`;
