@@ -15,6 +15,7 @@ import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { FindACoachComponent } from './find-a-coach/find-a-coach.component';
 import {FilterPipe} from "./pipes/filter.pipe";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {FilterPipe} from "./pipes/filter.pipe";
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatSelectModule,
 
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],

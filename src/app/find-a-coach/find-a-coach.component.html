@@ -9,27 +9,34 @@
 
           <header>
             <div class="row">
-              <div class="input-field col l3 m6 s12">
-                <select class="essai">
-                  <option value="" disabled selected>Choose topic</option>
-                  <option value="1">Biology</option>
-                  <option value="2">Chemistry</option>
-                  <option value="3">Mathematics</option>
-                </select>
+              <div class="col l3 m6 s12">
                 <label>Filter by Topic</label>
+                <br>
+                <mat-form-field appearance="fill">
+                  <mat-label>Choose topic</mat-label>
+                  <mat-select>
+                    <mat-option value="1">Biology</mat-option>
+                    <mat-option value="2">Chemistry</mat-option>
+                    <mat-option value="3">Mathematics</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
               </div>
-              <div class="input-field col l3 m6 s12">
-                <select multiple>
-                  <option value="" disabled selected>Choose year</option>
-                  <option value="1">year 1</option>
-                  <option value="2">year 2</option>
-                  <option value="3">year 3</option>
-                  <option value="1">year 4</option>
-                  <option value="2">year 5</option>
-                  <option value="3">year 6</option>
-                  <option value="3">year 7</option>
-                </select>
+              <div class="col l3 m6 s12">
                 <label>Filter by Year</label>
+                <br>
+                <mat-form-field appearance="fill">
+                  <mat-label>Choose year</mat-label>
+                  <mat-select multiple>
+                    <mat-option value="1">year 1</mat-option>
+                    <mat-option value="2">year 2</mat-option>
+                    <mat-option value="3">year 3</mat-option>
+                    <mat-option value="1">year 4</mat-option>
+                    <mat-option value="2">year 5</mat-option>
+                    <mat-option value="3">year 6</mat-option>
+                    <mat-option value="3">year 7</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
@@ -38,38 +45,38 @@
               </div>
             </div>
           </header>
-<!--Start -->
+          <!--Start -->
           <div class="row" >
-          <ng-container *ngFor="let user of users | filter:'COACHEE'">
-            <div class="col l3 m4 s12">
-              <h5 class="header">{{user.firstName}} {{user.lastName}}</h5>
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="{{user.pictureUrl}}">
+            <ng-container *ngFor="let user of users | filter:'COACHEE'">
+              <div class="col l3 m4 s12">
+                <h5 class="header">{{user.firstName}} {{user.lastName}}</h5>
+                <div class="card horizontal">
+                  <div class="card-image">
+                    <img src="{{user.pictureUrl}}">
 
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <table class="highlight responsive-table">
-                      <tbody>
-                      <tr>
-                        <td><strong>Mathematics</strong></td>
-                        <td>1,2,3</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Biology</strong></td>
-                        <td>1,2</td>
-                      </tr>
-                      </tbody>
-                    </table>
                   </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
-                    class="material-icons">send</i></a>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <table class="highlight responsive-table">
+                        <tbody>
+                        <tr>
+                          <td><strong>Mathematics</strong></td>
+                          <td>1,2,3</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Biology</strong></td>
+                          <td>1,2</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
+                      class="material-icons">send</i></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
-<!--stop-->
+            </ng-container>
+            <!--stop-->
           </div>
 
         </section>
