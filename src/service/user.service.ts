@@ -32,4 +32,8 @@ export class UserService {
   getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${this.url}/${id}`);
   }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/?id=${id}`)
+  }
 }

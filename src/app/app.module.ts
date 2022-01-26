@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { CoachProfileComponent } from './coach-profile/coach-profile.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    CoachProfileComponent,
 
 
   ],
