@@ -36,10 +36,12 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(userToCreate)
       .subscribe(success => {
           console.log("success");
+          this.router.navigateByUrl('/login')
         }
         ,
         error => {
           this.error = error;
+          console.log(error)
         }
       );
   }
