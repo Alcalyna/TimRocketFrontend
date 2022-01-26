@@ -10,6 +10,8 @@ import {User} from "../model/User";
 })
 export class UserService {
 
+  private _currentUser!: Observable<User>
+
   url: string
 
   constructor(private http: HttpClient) {
@@ -24,7 +26,6 @@ export class UserService {
     return this.http.post<User>(this.url, user);
   }
 
-
   getUserBy(email: string): Observable<User> {
     return this.http.get<User>(`${this.url}?email=` + email);
   }
@@ -33,4 +34,11 @@ export class UserService {
     return this.http.get<User>(`${this.url}/${id}`);
   }
 
+  setCurrentUser(email: string) {
+    this._currentUser = this.getUserBy(email);
+  }
+
+  get currentUser(): Observable<User> {
+    return this._currentUser;
+  }
 }
