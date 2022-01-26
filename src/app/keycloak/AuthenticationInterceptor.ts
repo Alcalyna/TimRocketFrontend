@@ -14,11 +14,12 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!this.keycloakService.isLoggedIn()) {
+    if (!this.keycloakService.isLoggedIn() && req.url != '/register') {
       // this.router.navigateByUrl("/login");
       return next.handle(req);
     }
 
+    // req.url != 'register'
     // if (this.router.url === '/login') {
     //   return next.handle(req);
     // }
