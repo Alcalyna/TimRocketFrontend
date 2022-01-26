@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute} from "@angular/router";
+import {Coach} from "../../model/Coach";
 
 @Component({
   selector: 'app-coach-profile',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class CoachProfileComponent implements OnInit {
 
-  user: User | undefined
+  coach: Coach | undefined
 
   constructor(private userService: UserService,
               private route: ActivatedRoute
@@ -22,8 +23,8 @@ export class CoachProfileComponent implements OnInit {
 
   getUser(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id!)
-      .subscribe(user => this.user = user);
+    this.userService.getCoach(id!)
+      .subscribe(coach => this.coach = coach);
   }
 
 }
