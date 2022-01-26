@@ -13,18 +13,22 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { FindACoachComponent } from './find-a-coach/find-a-coach.component';
+import {FilterPipe} from "./pipes/filter.pipe";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        FindACoachComponent,
+        FilterPipe,
 
 
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,10 +41,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 
   ],
   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
-  exports: [
-    HomeComponent,
+    exports: [
+        HomeComponent,
+        FilterPipe,
 
-  ],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
