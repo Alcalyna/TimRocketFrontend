@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col l2 m2 s12">
             <img src="{{ currentUser?.pictureUrl }}" class="responsive-img circle" alt="Profile Picture">
-            <app-upload-file></app-upload-file>
+<!--            <app-upload-file></app-upload-file>-->
           </div>
 
           <div class="col l10 m12 s12">
@@ -66,7 +66,7 @@
 
 
               <div class="col s12">
-                <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()">Save
+                <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()" [routerLink]="['../profile']">Save
                   <i class="material-icons left">send</i>
                 </button>
                 <a class="btn waves-effect waves-light col s5 yellow darken-2"  href="" [routerLink]="['../profile']">Cancel

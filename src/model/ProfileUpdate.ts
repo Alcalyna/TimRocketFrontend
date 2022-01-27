@@ -3,5 +3,5 @@ export interface ProfileUpdate {
   lastName : string
   email : string
   role : string
-  pictureUrl : string
+ // pictureUrl : string
 }
