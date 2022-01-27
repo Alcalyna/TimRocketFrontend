@@ -10,6 +10,7 @@ import {UserService} from "../../service/user.service";
 export class FindACoachComponent implements OnInit {
 
   users!: User[];
+  searchTerm?: string;
 
   constructor(
     private userService: UserService
@@ -21,5 +22,9 @@ export class FindACoachComponent implements OnInit {
     this.userService.getUsers().subscribe(users => this.users = users);
     // var elems = document.querySelectorAll('.dropdown-trigger');
     // var instances = Dropdown.init(elems, {});
+  }
+
+  search(term: string) {
+    this.searchTerm = term;
   }
 }

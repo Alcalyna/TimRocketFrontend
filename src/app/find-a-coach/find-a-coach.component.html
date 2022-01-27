@@ -40,14 +40,14 @@
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate">
+                <input id="icon_prefix" type="text" class="validate" #searchbox (input)="search(searchbox.value)">
                 <label for="icon_prefix">First name, last name or email</label>
               </div>
             </div>
           </header>
           <!--Start -->
           <div class="row" >
-            <ng-container *ngFor="let user of users | filter:'COACHEE'">
+            <ng-container *ngFor="let user of users | filter:'COACHEE' | search:searchTerm">
               <div class="col l3 m4 s12">
                 <h5 class="header">{{user.firstName}} {{user.lastName}}</h5>
                 <div class="card horizontal">

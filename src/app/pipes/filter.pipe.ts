@@ -12,4 +12,12 @@ export class FilterPipe implements PipeTransform {
     })
   }
 
+  //
+  // IF year sélectionne
+  //       filter sur role && filter year
+  // IF topic est sélectionné
+  //       filter sur topic && role
+  // IF topic && year
+  //       tout
+  // return filter juste sur role
 }

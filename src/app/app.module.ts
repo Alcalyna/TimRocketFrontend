@@ -17,6 +17,7 @@ import { FindACoachComponent } from './find-a-coach/find-a-coach.component';
 import {FilterPipe} from "./pipes/filter.pipe";
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
         ProfileComponent,
         FindACoachComponent,
         FilterPipe,
+        SearchPipe,
 
 
     ],
