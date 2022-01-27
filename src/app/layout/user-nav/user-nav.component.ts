@@ -19,4 +19,8 @@ export class UserNavComponent implements OnInit {
     this.userService.getUserBy(this.keycloackService.getUsername()).subscribe(user => this.currentUser = user);
   }
 
+  changeCSS(): void | null {
+    const color = document.getElementById('custom-color');
+    color!.style.transform = 'nav-content teal lighten-3';
+  }
 }
