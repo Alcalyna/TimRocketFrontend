@@ -14,7 +14,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     if (this.router.url === '/register') {
       return next.handle(req);
     }
@@ -23,10 +22,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       this.router.navigateByUrl("/login");
       return next.handle(req);
     }
-
-    // if (this.router.url === '/login') {
-    //   return next.handle(req);
-    // }
 
     req = req.clone({
       setHeaders: {
