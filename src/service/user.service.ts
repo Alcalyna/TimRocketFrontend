@@ -3,12 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {Observable} from 'rxjs';
 import {User} from "../model/User";
+import {Coach} from "../model/Coach";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private _currentUser!: Observable<User>
 
   url: string
 
@@ -25,6 +28,22 @@ export class UserService {
   }
 
   getUserBy(email: string): Observable<User> {
-    return this.http.get<User>(`${this.url}/${email}`);
+    return this.http.get<User>(`${this.url}?email=` + email);
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/${id}`);
+  }
+
+  getCoach(id: string): Observable<Coach>{
+    return this.http.get<Coach>(`${this.url}/coach/${id}`);
+  }
+
+  setCurrentUser(email: string) {
+    this._currentUser = this.getUserBy(email);
+  }
+
+  get currentUser(): Observable<User> {
+    return this._currentUser;
   }
 }

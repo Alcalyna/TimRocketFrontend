@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../../model/User";
+import {UserService} from "../../../service/user.service";
+import {KeycloakService} from "../../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-user-nav',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor() { }
+  currentUser!: User
+
+  constructor(private userService: UserService,
+              private keycloackService: KeycloakService) { }
 
   ngOnInit(): void {
+    this.userService.getUserBy(this.keycloackService.getUsername()).subscribe(user => this.currentUser = user);
   }
 
 }

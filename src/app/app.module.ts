@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { CoachProfileComponent } from './coach-profile/coach-profile.component';
 import { FindACoachComponent } from './find-a-coach/find-a-coach.component';
 import {FilterPipe} from "./pipes/filter.pipe";
 import {MatSelectModule} from "@angular/material/select";
@@ -30,6 +31,7 @@ import { SearchPipe } from './pipes/search.pipe';
         FindACoachComponent,
         FilterPipe,
         SearchPipe,
+        CoachProfileComponent
 
 
     ],
