@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {Observable} from 'rxjs';
 import {User} from "../model/User";
+import {ProfileUpdate} from "../model/ProfileUpdate";
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import {User} from "../model/User";
 export class UserService {
 
   url: string
-  currentUser! : User;
+  currentUser!: User;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.backendUrl}/users`;
@@ -29,7 +30,9 @@ export class UserService {
     return this.http.get<User>(`${this.url}/${email}`);
   }
 
-  editProfile(user: User): Observable<User> {
-    return this.http.put<User>(`${this.url}/${user?.userId!}`, user);
+  editProfile(id: String, profileUpdate: ProfileUpdate): Observable<User> {
+    return this.http.put<User>(`${this.url}/${id}`, profileUpdate);
   }
+
+
 }
