@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
 
+
 @Component({
   selector: 'app-find-a-coach',
   templateUrl: './find-a-coach.component.html',

@@ -7,7 +7,7 @@ import {User} from "../../model/User";
 export class FilterPipe implements PipeTransform {
 
   transform(users: User[], filterparameter: string | undefined) {
-    return users.filter((user) => {
+    return users?.filter((user) => {
       return user.role === filterparameter;
     })
   }
