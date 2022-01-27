@@ -1,22 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {User} from "../../model/User";
+import {Coach} from "../../model/Coach";
 
 @Pipe({
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(users: User[], searchString: string | undefined){
-    if (users.length === 0 || searchString === '' || !searchString || searchString.length < 3) {
-      return users;
+  transform(coaches: Coach[], searchString: string | undefined){
+    if (coaches.length === 0 || searchString === '' || !searchString || searchString.length < 3) {
+      return coaches;
     }
 
-    return users.filter((user) => {
-      let searchFirstName: boolean = user.firstName.toLowerCase().includes(searchString.toLowerCase());
-      let searchLastName: boolean = user.lastName.toLowerCase().includes(searchString.toLowerCase());
-      let searchEmail: boolean = user.email.toLowerCase().includes(searchString.toLowerCase());
+    return coaches.filter((coach) => {
+      let searchFirstName: boolean = coach.user.firstName.toLowerCase().includes(searchString.toLowerCase());
+      let searchLastName: boolean = coach.user.lastName.toLowerCase().includes(searchString.toLowerCase());
+      let searchEmail: boolean = coach.user.email.toLowerCase().includes(searchString.toLowerCase());
       return searchFirstName || searchLastName || searchEmail;
     })
   }
-
 }

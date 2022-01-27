@@ -19,8 +19,12 @@ export class UserService {
     this.url = `${environment.backendUrl}/users`;
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<any[]>(this.url);
+  // getUsers(): Observable<User[]> {
+  //   return this.http.get<any[]>(this.url);
+  // }
+
+  getCoaches(): Observable<Coach[]> {
+    return this.http.get<any[]>(`${this.url}/coach`)
   }
 
   createUser(user: User): Observable<User> {

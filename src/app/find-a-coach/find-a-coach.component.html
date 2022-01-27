@@ -47,12 +47,12 @@
           </header>
           <!--Start -->
           <div class="row" >
-            <ng-container *ngFor="let user of users | filter:'COACHEE' | search:searchTerm">
+            <ng-container *ngFor="let coach of coaches | search:searchTerm">
               <div class="col l3 m4 s12">
-                <h5 class="header">{{user.firstName}} {{user.lastName}}</h5>
+                <h5 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h5>
                 <div class="card horizontal">
                   <div class="card-image">
-                    <img src="{{user.pictureUrl}}">
+                    <img src="{{coach.user.pictureUrl}}">
 
                   </div>
                   <div class="card-stacked">
