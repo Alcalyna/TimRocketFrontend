@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
-import {Route} from "@angular/router";
+import {ProfileUpdate} from "../../model/ProfileUpdate";
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,9 +11,13 @@ import {Route} from "@angular/router";
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+  @ViewChild("fileUpload", {static: false}) fileUpload!: ElementRef;
+  files = [];
+  fileName!: string;
+
 
   currentUser!: User;
-  loggedInUser! : boolean
+  loggedInUser!: boolean;
   editForm!: FormGroup;
   ctlFirstName!: FormControl;
   ctlLastName!: FormControl;
@@ -28,8 +31,8 @@ export class EditProfileComponent implements OnInit {
     private userService: UserService
   ) {
 
-    this.ctlFirstName = this.formBuilder.control("",[Validators.maxLength(25), Validators.minLength(2)]);
-    this.ctlLastName = this.formBuilder.control("",[Validators.maxLength(25), Validators.minLength(2)]);
+    this.ctlFirstName = this.formBuilder.control("", [Validators.maxLength(25), Validators.minLength(2)]);
+    this.ctlLastName = this.formBuilder.control("", [Validators.maxLength(25), Validators.minLength(2)]);
     this.ctlEmail = this.formBuilder.control("", [Validators.email, Validators.maxLength(50)]);
     this.ctlRole = this.formBuilder.control("", []);
 
@@ -40,36 +43,45 @@ export class EditProfileComponent implements OnInit {
       role: this.ctlRole
     });
 
-    console.log("I am here " + this.currentUser?.firstName)
-
     this.editForm.patchValue(
       this.getCurrentUser());
   }
 
   ngOnInit(): void {
-    this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
+    this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user => {
+      this.currentUser = user;
+      this.editForm.patchValue({
+        firstName: this.currentUser.firstName,
+        lastName: this.currentUser.lastName,
+        email: this.currentUser.email,
+        role: this.currentUser.role
+      });
 
+    });
 
   }
 
-  isAdmin(): boolean {
-    return this.currentUser.role === "Admin";
+  isAdmin(): boolean | undefined {
+    return this.currentUser?.role === "Admin";
   }
 
   onSubmit(): void {
-    this.editForm.patchValue({
-      firstName: this.currentUser.firstName,
-      lastName: this.currentUser.lastName,
-      email: this.currentUser.email,
-      role: this.currentUser.role
-    });
     console.log(this.editForm.value);
+    let changedUser: ProfileUpdate = {
+      firstName: this.editForm.value.firstName,
+      lastName: this.editForm.value.lastName,
+      email: this.editForm.value.email,
+      role: this.editForm.value.role,
+      pictureUrl: this.editForm.value.pictureUrl
+    }
+    console.log(this.currentUser);
+    this.userService.editProfile(this.currentUser?.id!, changedUser).subscribe(res => {
+
+    });
   }
 
 
-  getCurrentUser(): User{
-     return this.currentUser = this.userService.currentUser
+  getCurrentUser(): User {
+    return this.currentUser = this.userService.currentUser;
   }
-
-
 }

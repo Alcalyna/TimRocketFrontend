@@ -1,10 +1,7 @@
-export interface User {
-  id : string
+export interface ProfileUpdate {
   firstName : string
   lastName : string
   email : string
-  password : string
   role : string
-  company : string
   pictureUrl : string
 }

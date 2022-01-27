@@ -14,6 +14,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthenticationInterceptor } from "./keycloak/AuthenticationInterceptor";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -24,6 +27,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     RegisterComponent,
     ProfileComponent,
     EditProfileComponent,
+    UploadFileComponent
 
 
   ],
@@ -36,6 +40,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatIconModule,
+    MatCardModule
 
 
   ],

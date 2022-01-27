@@ -18,11 +18,17 @@
         <h5>Edit Information</h5>
         <div class="divider"></div>
         <div class="row">
+          <div class="col l2 m2 s12">
+            <img src="{{ currentUser?.pictureUrl }}" class="responsive-img circle" alt="Profile Picture">
+            <app-upload-file></app-upload-file>
+          </div>
+
+          <div class="col l10 m12 s12">
           <form class="col s12" [formGroup]="editForm" >
             <div class="row" >
               <div class="input-field col s12">
                 <input id="firstName" type="text" class="validate" formControlName="firstName" [formControl]="ctlFirstName" >
-                <label for="firstName">First Name: {{currentUser.firstName}}</label>
+                <label for="firstName">First Name</label>
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be less than 25 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be more than 2 characters</mat-error>
               </div>
@@ -34,11 +40,12 @@
                 <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be more than 2 characters</mat-error>
               </div>
 
-              <div class="input-field col s12">
-                <input id="email" type="text" class="validate" formControlName="email" [formControl]="ctlEmail">
-                <label for="email">Email</label>
-                <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxLength')">The email length should be less than 50 characters.</mat-error>
-                <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">The email format is not correct.</mat-error>
+              <div class="col s12">
+<!--                <input id="email" type="text" class="validate" formControlName="email" [formControl]="ctlEmail">-->
+                <label>Email</label>
+                <p>{{currentUser?.email}}</p>
+<!--                <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxLength')">The email length should be less than 50 characters.</mat-error>-->
+<!--                <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">The email format is not correct.</mat-error>-->
               </div>
 
               <div *ngIf="isAdmin()" class="col s12">
@@ -56,6 +63,8 @@
               </div>
 
 
+
+
               <div class="col s12">
                 <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()">Save
                   <i class="material-icons left">send</i>
@@ -67,6 +76,7 @@
 
             </div>
           </form>
+          </div>
         </div>
       </section>
 
