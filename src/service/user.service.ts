@@ -24,7 +24,7 @@ export class UserService {
   // }
 
   getCoaches(): Observable<Coach[]> {
-    return this.http.get<any[]>(`${this.url}/coach`)
+    return this.http.get<any[]>(`${this.url}?coach=`)
   }
 
   createUser(user: User): Observable<User> {

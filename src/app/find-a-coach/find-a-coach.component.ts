@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
 
@@ -25,7 +24,7 @@ export class FindACoachComponent implements OnInit {
     // var instances = Dropdown.init(elems, {});
   }
 
-  search(term: string) {
+  getInputValue(term: string) {
     this.searchTerm = term;
   }
 }

@@ -40,7 +40,7 @@
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate" #searchbox (input)="search(searchbox.value)">
+                <input id="icon_prefix" type="text" class="validate" #searchbox (input)="getInputValue(searchbox.value)">
                 <label for="icon_prefix">First name, last name or email</label>
               </div>
             </div>
