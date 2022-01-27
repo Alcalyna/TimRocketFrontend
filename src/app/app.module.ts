@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationInterceptor} from "./keycloak/AuthenticationInterceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { CoachProfileComponent } from './coach-profile/coach-profile.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CoachProfileComponent } from './coach-profile/coach-profile.component';
     RegisterComponent,
     ProfileComponent,
     CoachProfileComponent,
+    ErrorComponent,
 
 
   ],

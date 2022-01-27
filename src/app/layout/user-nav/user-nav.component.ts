@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../model/User";
 import {UserService} from "../../../service/user.service";
 import {KeycloakService} from "../../keycloak/keycloak.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-nav',
@@ -12,15 +13,18 @@ export class UserNavComponent implements OnInit {
 
   currentUser!: User
 
+
   constructor(private userService: UserService,
-              private keycloackService: KeycloakService) { }
+              private keycloackService: KeycloakService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.userService.getUserBy(this.keycloackService.getUsername()).subscribe(user => this.currentUser = user);
   }
 
-  changeCSS(): void | null {
-    const color = document.getElementById('custom-color');
-    color!.style.transform = 'nav-content teal lighten-3';
+  hasRoute(route: string): boolean{
+    return this.router.url.includes(route);
   }
+
 }

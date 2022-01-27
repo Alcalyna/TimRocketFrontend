@@ -36,7 +36,7 @@ export class UserService {
   }
 
   getCoach(id: string): Observable<Coach>{
-    return this.http.get<Coach>(`${this.url}/coach/${id}`);
+    return this.http.get<Coach>(`${this.url}/${id}?coach=`);
   }
 
   setCurrentUser(email: string) {
