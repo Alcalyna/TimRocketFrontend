@@ -17,6 +17,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
+import { ApplyComponent } from './apply/apply.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {MatCardModule} from "@angular/material/card";
     RegisterComponent,
     ProfileComponent,
     EditProfileComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    ApplyComponent
 
 
   ],

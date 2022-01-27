@@ -71,8 +71,8 @@ export class EditProfileComponent implements OnInit {
       firstName: this.editForm.value.firstName,
       lastName: this.editForm.value.lastName,
       email: this.editForm.value.email,
-      role: this.editForm.value.role,
-      pictureUrl: this.editForm.value.pictureUrl
+      role: this.editForm.value.role
+      //pictureUrl: this.editForm.value.pictureUrl
     }
     console.log(this.currentUser);
     this.userService.editProfile(this.currentUser?.id!, changedUser).subscribe(res => {

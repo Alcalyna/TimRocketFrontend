@@ -34,5 +34,9 @@ export class UserService {
     return this.http.put<User>(`${this.url}/${id}`, profileUpdate);
   }
 
+  /*ditRoleToCoach(id : String): Observable<User> {
+    return this.http.put<User>(`${this.url}/);
+  }*/
+
 
 }
