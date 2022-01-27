@@ -1,4 +1,4 @@
 export interface CoachTopic {
   name: string
-  experience: number
+  experience: string
 }
