@@ -19,6 +19,8 @@ export class ApplyComponent implements OnInit {
   }
 
   becomeACoach() {
-    // send to the service
+    this.userService.editRoleToCoach(this.currentUser?.id).subscribe(res => {
+
+    });
   }
 }
