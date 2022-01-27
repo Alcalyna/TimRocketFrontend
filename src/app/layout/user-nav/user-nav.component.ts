@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from "../../../model/User";
+import {UserService} from "../../../service/user.service";
+import {KeycloakService} from "../../keycloak/keycloak.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-nav',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor() { }
+  currentUser!: User
+
+
+  constructor(private userService: UserService,
+              private keycloackService: KeycloakService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.userService.getUserBy(this.keycloackService.getUsername()).subscribe(user => this.currentUser = user);
+  }
+
+  hasRoute(route: string): boolean{
+    return this.router.url.includes(route);
   }
 
 }

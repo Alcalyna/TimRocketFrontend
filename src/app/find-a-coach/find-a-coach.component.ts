@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
+import {Coach} from "../../model/Coach";
 
 @Component({
   selector: 'app-find-a-coach',
@@ -9,7 +9,8 @@ import {UserService} from "../../service/user.service";
 })
 export class FindACoachComponent implements OnInit {
 
-  users!: User[];
+  coaches!: Coach[];
+  searchTerm?: string;
 
   constructor(
     private userService: UserService
@@ -18,8 +19,12 @@ export class FindACoachComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getUsers().subscribe(users => this.users = users);
+    this.userService.getCoaches().subscribe(coaches => this.coaches = coaches);
     // var elems = document.querySelectorAll('.dropdown-trigger');
     // var instances = Dropdown.init(elems, {});
+  }
+
+  getInputValue(term: string) {
+    this.searchTerm = term;
   }
 }
