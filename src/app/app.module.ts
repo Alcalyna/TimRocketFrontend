@@ -18,6 +18,7 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import { ApplyComponent } from './apply/apply.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ApplyComponent } from './apply/apply.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule
 
 
   ],

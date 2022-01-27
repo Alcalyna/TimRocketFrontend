@@ -4,6 +4,7 @@ import {KeycloakService} from "../keycloak/keycloak.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileUpdate} from "../../model/ProfileUpdate";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,10 +26,12 @@ export class EditProfileComponent implements OnInit {
   ctlRole!: FormControl;
 
 
+
   constructor(
     private formBuilder: FormBuilder,
     private keyCloakService: KeycloakService,
-    private userService: UserService
+    private userService: UserService,
+    private router : Router
   ) {
 
     this.ctlFirstName = this.formBuilder.control("", [Validators.maxLength(25), Validators.minLength(2)]);
@@ -76,10 +79,10 @@ export class EditProfileComponent implements OnInit {
     }
     console.log(this.currentUser);
     this.userService.editProfile(this.currentUser?.id!, changedUser).subscribe(res => {
-
+      window.location.href="/profile";
     });
-  }
 
+  }
 
   getCurrentUser(): User {
     return this.currentUser = this.userService.currentUser;

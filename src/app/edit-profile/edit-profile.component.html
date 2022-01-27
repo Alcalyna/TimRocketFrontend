@@ -61,12 +61,8 @@
                 <label for="role">Role</label>
                 <p>{{currentUser?.role}}</p>
               </div>
-
-
-
-
               <div class="col s12">
-                <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()" [routerLink]="['../profile']">Save
+                <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()" >Save
                   <i class="material-icons left">send</i>
                 </button>
                 <a class="btn waves-effect waves-light col s5 yellow darken-2"  href="" [routerLink]="['../profile']">Cancel
