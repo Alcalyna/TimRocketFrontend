@@ -81,7 +81,8 @@ export class EditProfileComponent implements OnInit {
     console.log(this.currentUser.role);
     console.log(this.editForm.value);
     this.userService.editProfile(this.currentUser?.userId!, changedUser).subscribe(res => {
-      window.location.href="/profile";
+      //window.location.href="/profile";
+      this.router.navigate(['profile']);
     });
 
   }
