@@ -32,10 +32,11 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="company" type="text" class="validate" formControlName="company">
+                  <input id="company" type="text" class="validate"
+                         formControlName="company">
                   <label for="company">Company</label>
                   <div *ngIf="company.errors?.['maxlength']">
-                    <p>An company name can only be 25 characters long</p>
+                    <p>An email can only be 25 characters long</p>
                   </div>
                   <div *ngIf="error" class="error">{{error.error.company}}</div>
                 </div>
