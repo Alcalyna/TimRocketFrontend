@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   createUserForm: FormGroup = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(25)]],
     lastName: ['', [Validators.required, Validators.maxLength(25)]],
-    company: ['', Validators.maxLength(25)],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$")]],
     passwordVerification: ['']
@@ -64,10 +63,6 @@ export class RegisterComponent implements OnInit {
 
   get passwordVerification(): FormControl {
     return this.createUserForm.get('passwordVerification') as FormControl;
-  }
-
-  get company(): FormControl {
-    return this.createUserForm.get('company') as FormControl;
   }
 
 }
