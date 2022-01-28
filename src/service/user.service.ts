@@ -4,6 +4,7 @@ import {environment} from "../environments/environment";
 import {Observable} from 'rxjs';
 import {User} from "../model/User";
 import {Coach} from "../model/Coach";
+import {ProfileUpdate} from "../model/ProfileUpdate";
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class UserService {
   private _currentUser!: Observable<User>
 
   url: string
+  currentUser!: User;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.backendUrl}/users`;
@@ -31,6 +33,10 @@ export class UserService {
     return this.http.post<User>(this.url, user);
   }
 
+  // getUserBy(email: string): Observable<User> {
+  //   return this.http.get<User>(`${this.url}?email=` + email);
+  // }
+
   getUserBy(email: string): Observable<User> {
     return this.http.get<User>(`${this.url}?email=` + email);
   }
@@ -47,7 +53,17 @@ export class UserService {
     this._currentUser = this.getUserBy(email);
   }
 
-  get currentUser(): Observable<User> {
-    return this._currentUser;
+  // get currentUser(): Observable<User> {
+  //   return this._currentUser;
+  // }
+
+  editProfile(id: String, profileUpdate: ProfileUpdate): Observable<User> {
+    return this.http.put<User>(`${this.url}/${id}`, profileUpdate);
   }
+
+  editRoleToCoach(id : String): Observable<User> {
+    return this.http.put<User>(this.url, id);
+  }
+
+
 }

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
-  private keycloak: KeycloakService) {
+              private keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {
@@ -39,8 +39,7 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(userToCreate)
       .subscribe(success => {
           this.router.navigate(['login']);
-        }
-        ,
+        },
         error => {
           this.error = error;
         }
