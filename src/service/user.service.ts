@@ -4,6 +4,7 @@ import {environment} from "../environments/environment";
 import {Observable} from 'rxjs';
 import {User} from "../model/User";
 import {Coach} from "../model/Coach";
+import {Topic} from "../model/Topic";
 
 
 @Injectable({
@@ -25,6 +26,10 @@ export class UserService {
 
   getCoaches(): Observable<Coach[]> {
     return this.http.get<any[]>(`${this.url}/coach`)
+  }
+
+  getTopics(): Observable<Topic[]>{
+    return this.http.get<any[]>(`${this.url}/topics`)
   }
 
   createUser(user: User): Observable<User> {
