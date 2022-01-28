@@ -78,6 +78,8 @@ export class EditProfileComponent implements OnInit {
       //pictureUrl: this.editForm.value.pictureUrl
     }
     console.log(this.currentUser);
+    console.log(this.currentUser.role);
+    console.log(this.editForm.value);
     this.userService.editProfile(this.currentUser?.id!, changedUser).subscribe(res => {
       window.location.href="/profile";
     });

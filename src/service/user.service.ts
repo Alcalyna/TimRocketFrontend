@@ -26,8 +26,12 @@ export class UserService {
     return this.http.post<User>(this.url, user);
   }
 
+  // getUserBy(email: string): Observable<User> {
+  //   return this.http.get<User>(`${this.url}?email=` + email);
+  // }
+
   getUserBy(email: string): Observable<User> {
-    return this.http.get<User>(`${this.url}?email=` + email);
+    return this.http.get<User>(`${this.url}/${email}`);
   }
 
   editProfile(id: String, profileUpdate: ProfileUpdate): Observable<User> {
