@@ -19,19 +19,21 @@ import {FilterPipe} from "./pipes/filter.pipe";
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { SearchPipe } from './pipes/search.pipe';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        LoginComponent,
-        RegisterComponent,
-        ProfileComponent,
-        FindACoachComponent,
-        FilterPipe,
-        SearchPipe,
-        CoachProfileComponent
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    FindACoachComponent,
+    FilterPipe,
+    SearchPipe,
+    CoachProfileComponent,
+    ErrorComponent,
 
 
     ],

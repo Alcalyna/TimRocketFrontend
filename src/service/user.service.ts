@@ -25,7 +25,7 @@ export class UserService {
   // }
 
   getCoaches(): Observable<Coach[]> {
-    return this.http.get<any[]>(`${this.url}/coach`)
+    return this.http.get<any[]>(`${this.url}?coach=`)
   }
 
   getTopics(): Observable<Topic[]>{
@@ -45,7 +45,7 @@ export class UserService {
   }
 
   getCoach(id: string): Observable<Coach>{
-    return this.http.get<Coach>(`${this.url}/coach/${id}`);
+    return this.http.get<Coach>(`${this.url}/${id}?coach=`);
   }
 
   setCurrentUser(email: string) {
