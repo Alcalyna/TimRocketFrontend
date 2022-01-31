@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getTopics(): Observable<Topic[]>{
-    return this.http.get<any[]>(`${this.url}/topics`)
+    return this.http.get<any[]>(`${environment.backendUrl}/topics`)
   }
 
   createUser(user: User): Observable<User> {

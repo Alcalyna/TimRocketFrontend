@@ -14,10 +14,8 @@
                 <br>
                 <mat-form-field appearance="fill">
                   <mat-label>Choose topic</mat-label>
-                  <mat-select>
-                    <mat-option value="1">Biology</mat-option>
-                    <mat-option value="2">Chemistry</mat-option>
-                    <mat-option value="3">Mathematics</mat-option>
+                  <mat-select #selectedCategory (select)="onChange2(selectedCategory.value)">
+                    <mat-option *ngFor="let topic of topics" [value]="topic.name">{{topic.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
 

@@ -13,6 +13,8 @@ export class FindACoachComponent implements OnInit {
   coaches!: Coach[];
   topics!: Topic[];
   searchTerm?: string;
+  selectedOption?: string;
+  result?: string;
 
   constructor(
     private userService: UserService
@@ -23,11 +25,13 @@ export class FindACoachComponent implements OnInit {
 
     this.userService.getCoaches().subscribe(coaches => this.coaches = coaches);
     this.userService.getTopics().subscribe(topics => this.topics = topics)
-    // var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instances = Dropdown.init(elems, {});
   }
 
   getInputValue(term: string) {
     this.searchTerm = term;
+  }
+
+  onChange2(value:any){
+    console.log(value);
   }
 }
