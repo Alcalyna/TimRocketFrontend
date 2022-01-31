@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/User";
 import {Router} from "@angular/router";
 import {ConfirmedValidator} from "./ConfirmedValidator";
+import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,6 @@ export class RegisterComponent implements OnInit {
   createUserForm: FormGroup = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.maxLength(25)]],
     lastName: ['', [Validators.required, Validators.maxLength(25)]],
-    company: ['', Validators.maxLength(25)],
     email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$")]],
     passwordVerification: ['']
@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {
@@ -37,8 +38,7 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(userToCreate)
       .subscribe(success => {
           this.router.navigate(['login']);
-        }
-        ,
+        },
         error => {
           this.error = error;
         }
@@ -63,10 +63,6 @@ export class RegisterComponent implements OnInit {
 
   get passwordVerification(): FormControl {
     return this.createUserForm.get('passwordVerification') as FormControl;
-  }
-
-  get company(): FormControl {
-    return this.createUserForm.get('company') as FormControl;
   }
 
 }

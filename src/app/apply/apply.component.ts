@@ -19,7 +19,7 @@ export class ApplyComponent implements OnInit {
   }
 
   becomeACoach() {
-    this.userService.editRoleToCoach(this.currentUser?.id).subscribe(res => {
+    this.userService.editRoleToCoach(this.currentUser?.userId!).subscribe(res => {
 
     });
   }

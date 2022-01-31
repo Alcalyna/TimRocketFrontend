@@ -17,10 +17,17 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // let roles = this.keyCloakService.getRoles();
+    // console.log(roles[0]);
+    //console.log(this.keyCloakService.getKeycloakInstance().realmAccess.roles);
+
   }
 
   isLoggedIn(){
     return this.keyCloakService.isLoggedIn();
+  }
+
+  coach(){
   }
 
   logout(){

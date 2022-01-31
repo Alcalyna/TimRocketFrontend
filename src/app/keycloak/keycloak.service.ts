@@ -40,7 +40,6 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }
@@ -49,9 +48,6 @@ export class KeycloakService {
     return this._currentUser;
   }
 
-
-
-
   logout(): void {
     localStorage.removeItem(this.token_key_name);
     this.sendSignal();
@@ -59,6 +55,7 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
+    this.userService.getUserBy(this.getUsername());
     this.sendSignal();
   }
 
@@ -74,4 +71,5 @@ export class KeycloakService {
     return "";
     //this returned null, so maybe refactoring is needed.
   }
+
 }

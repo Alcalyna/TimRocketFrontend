@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
     this.loggedInUser = this.keyCloakService.isLoggedIn();
     console.log(this.currentUser);
