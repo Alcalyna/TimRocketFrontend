@@ -26,16 +26,16 @@
           <div class="col l10 m12 s12">
           <form class="col s12" [formGroup]="editForm" >
             <div class="row" >
-              <div class="input-field col s12">
-                <input id="firstName" type="text" class="validate" formControlName="firstName" [formControl]="ctlFirstName" >
+              <div class=" col s12">
                 <label for="firstName">First Name</label>
+                <input id="firstName" type="text" class="validate" formControlName="firstName" [formControl]="ctlFirstName" >
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be less than 25 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be more than 2 characters</mat-error>
               </div>
 
-              <div class="input-field col s12">
-                <input id="lastName" type="text" class="validate" formControlName="lastName" [formControl]="ctlLastName">
+              <div class=" col s12">
                 <label for="lastName">Last Name</label>
+                <input id="lastName" type="text" class="validate" formControlName="lastName" [formControl]="ctlLastName">
                 <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be less than 25 characters.</mat-error>
                 <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be more than 2 characters</mat-error>
               </div>
@@ -51,9 +51,9 @@
               <div *ngIf="isAdmin()" class="col s12">
                 <label for="role">Role</label>
                 <select id="role" class="browser-default" material-select [formControl]="ctlRole">
-                  <option value="Coachee">Coachee</option>
-                  <option value="Coach">Coach</option>
-                  <option value="Admin">Admin</option>
+                  <option value="coachee">Coachee</option>
+                  <option value="coach">Coach</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
 
