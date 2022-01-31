@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
 import {Topic} from "../../model/Topic";
+import {Experience} from "../../model/Experience";
 
 @Component({
   selector: 'app-find-a-coach',
@@ -12,6 +13,7 @@ export class FindACoachComponent implements OnInit {
 
   coaches!: Coach[];
   topics!: Topic[];
+  experiences: string[] = ["JUNIOR", "MEDIOR", "SENIOR"];
   searchTerm?: string;
   selectedOption?: string;
   result?: string;
@@ -31,7 +33,8 @@ export class FindACoachComponent implements OnInit {
     this.searchTerm = term;
   }
 
-  onChange2(value:any){
-    console.log(value);
+  onChange(value:any){
+    this.result = value;
   }
+
 }

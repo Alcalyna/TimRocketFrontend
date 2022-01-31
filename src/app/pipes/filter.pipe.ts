@@ -7,18 +7,11 @@ import {Coach} from "../../model/Coach";
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(coaches: Coach[], filterparameter: string | undefined) {
-    return coaches.filter((coach) => {
-      return coach.user.role === filterparameter;
-    })
-  }
+  transform(coaches: Coach[], filterparameter: string | undefined ) {
+    if (filterparameter == "" || !filterparameter) {
+      return coaches
+    }
 
-  //
-  // IF year sélectionne
-  //       filter sur role && filter year
-  // IF topic est sélectionné
-  //       filter sur topic && role
-  // IF topic && year
-  //       tout
-  // return coaches
+    return coaches.filter(coach => coach.coachTopics.some(topic => topic.name.toLowerCase().includes(filterparameter.toLowerCase())))
+  }
 }
