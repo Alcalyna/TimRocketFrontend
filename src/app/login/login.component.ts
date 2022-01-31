@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+//TODO catch error in the pipe
   onSubmit(loginData: any) {
     this.keycloakService.logIn(loginData)
       .subscribe(success => {this.router.navigateByUrl('/profile')

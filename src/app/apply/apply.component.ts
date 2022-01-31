@@ -3,6 +3,7 @@ import {UserService} from "../../service/user.service";
 import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {Router} from "@angular/router";
+import {mergeAll, mergeMap} from "rxjs";
 
 @Component({
   selector: 'app-apply',
@@ -20,9 +21,12 @@ export class ApplyComponent implements OnInit {
   }
 
   becomeACoach() {
-    /*this.userService.editRoleToCoach(this.currentUser?.userId!).subscribe(res => {
-         this.router.navigate(['coach/:{this.currentUser?.userId!}'])
-    });*/
-    this.router.navigate(['coach/:this.currentUser?.userId!'])
+    const id = this.currentUser?.userId!;
+    this.userService.editRoleToCoach()
+      .pipe(mergeMap(() => this.keyCloakService.refreshToken()))
+      .subscribe(res => {
+        this.router.navigateByUrl(`coach/${id}`);
+      });
+    // this.router.navigate(['coach/:this.currentUser?.userId!'])
   }
 }

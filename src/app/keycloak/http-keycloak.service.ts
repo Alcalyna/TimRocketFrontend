@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {KeycloakTokenResponse} from "./keycloakTokenResponse";
-import {User} from "../../model/User";
 
 
 @Injectable({
@@ -28,6 +27,24 @@ export class HttpKeycloakService {
     body.set('grant_type', 'password');
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions);
   }
+
+  refreshToken(token: string): Observable<KeycloakTokenResponse> {
+    console.log("The refresh token: " + token)
+    const body = new URLSearchParams();
+    body.set('client_id', 'CodeCoachTimRocket');
+    body.set('grant_type', 'refresh_token');
+    body.set('refresh_token', token);
+    console.log("We are now here!");
+    return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions)
+  }
+
+  // Method: POST
+  // URL: https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/token
+  // Body type: x-www-form-urlencoded
+  // Form fields:
+  // client_id : <my-client-name>
+  // grant_type : refresh_token
+  // refresh_token: <my-refresh-token>
 
 
 }

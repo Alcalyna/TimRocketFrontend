@@ -61,9 +61,11 @@ export class UserService {
     return this.http.put<User>(`${this.url}/${id}`, profileUpdate);
   }
 
-  editRoleToCoach(id : String): Observable<User> {
-    return this.http.put<User>(this.url, id);
+  editRoleToCoach(): Observable<User> {
+    return this.http.put<User>(this.url, null);
   }
+
+
 
 
 }
