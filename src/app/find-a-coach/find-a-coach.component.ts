@@ -3,6 +3,8 @@ import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
 import {Topic} from "../../model/Topic";
 import {Experience} from "../../model/Experience";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-find-a-coach',
@@ -11,12 +13,15 @@ import {Experience} from "../../model/Experience";
 })
 export class FindACoachComponent implements OnInit {
 
-  coaches!: Coach[];
+  coaches!: Observable<Coach[]>;
   topics!: Topic[];
-  experiences: string[] = ["JUNIOR", "MEDIOR", "SENIOR"];
+  selected: string[] = [];
+  experiencesList = ["JUNIOR", "MEDIOR", "SENIOR"];
   searchTerm?: string;
   selectedOption?: string;
   result?: string;
+  selectedExperience: string[] = [];
+
 
   constructor(
     private userService: UserService
@@ -25,7 +30,7 @@ export class FindACoachComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getCoaches().subscribe(coaches => this.coaches = coaches);
+    this.coaches = this.userService.getCoaches();
     this.userService.getTopics().subscribe(topics => this.topics = topics)
   }
 
@@ -36,5 +41,8 @@ export class FindACoachComponent implements OnInit {
   onChange(value:any){
     this.result = value;
   }
+
+
+
 
 }

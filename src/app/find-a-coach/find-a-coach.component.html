@@ -13,24 +13,25 @@
                 <label>Filter by Topic</label>
                 <br>
                 <mat-form-field appearance="fill">
-                  <mat-label>Choose topic</mat-label>
+                  <mat-label>Choose Topic</mat-label>
                   <mat-select #selectedCategory (selectionChange)="onChange(selectedCategory.value)">
-                    <mat-option>All coaches</mat-option>
+                    <mat-option>All Coaches</mat-option>
                     <mat-option *ngFor="let topic of topics" [value]="topic.name">{{topic.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
 
               </div>
               <div class="col l3 m6 s12">
-                <label>Filter by Year</label>
+                <label>Filter by Experience Level</label>
                 <br>
                 <mat-form-field appearance="fill">
                   <mat-label>Choose Experience Level</mat-label>
-                  <mat-select multiple #selectedExperience (selectionChange)="onChange(selectedExperience.value)">
-                    <mat-option value="1">All Experience Level</mat-option>
-                    <mat-option *ngFor="let experience of experiences" value="2">{{experience}}</mat-option>
+                  <mat-select [(ngModel)]="selectedExperience" multiple>
+                    <mat-option [value]="'All Selected'">All Experience Levels</mat-option>
+                    <mat-option *ngFor="let experience of experiencesList" [value]="experience">{{experience}}</mat-option>
                   </mat-select>
                 </mat-form-field>
+
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
@@ -41,7 +42,7 @@
           </header>
           <!--Start -->
           <div class="row" >
-            <ng-container *ngFor="let coach of coaches | search:searchTerm | filter:result">
+            <ng-container *ngFor="let coach of coaches | async | search:searchTerm | filter:result | filterByExperience:selectedExperience" >
               <div class="col l3 m4 s12">
                 <h5 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h5>
                 <div class="card horizontal">
@@ -54,12 +55,9 @@
                       <table class="highlight responsive-table">
                         <tbody>
                         <tr>
-                          <td><strong>Mathematics</strong></td>
-                          <td>1,2,3</td>
-                        </tr>
-                        <tr>
-                          <td><strong>Biology</strong></td>
-                          <td>1,2</td>
+                          <span *ngFor="let topic of coach.coachTopics">
+                          <td>{{topic.name}} / {{topic.experience}}</td>
+                          </span>
                         </tr>
                         </tbody>
                       </table>

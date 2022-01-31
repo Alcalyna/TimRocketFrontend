@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {User} from "../../model/User";
 import {Coach} from "../../model/Coach";
 
 @Pipe({
@@ -7,8 +6,8 @@ import {Coach} from "../../model/Coach";
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(coaches: Coach[], filterparameter: string | undefined ) {
-    if (filterparameter == "" || !filterparameter) {
+  transform(coaches: Coach[] | null, filterparameter: string | undefined ) {
+    if (!coaches || filterparameter == "" || !filterparameter) {
       return coaches
     }
 

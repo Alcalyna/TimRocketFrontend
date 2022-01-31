@@ -20,6 +20,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { SearchPipe } from './pipes/search.pipe';
 import { ErrorComponent } from './error/error.component';
+import { FilterByExperiencePipe } from './pipes/filter-by-experience.pipe';
 
 
 @NgModule({
@@ -34,9 +35,11 @@ import { ErrorComponent } from './error/error.component';
     SearchPipe,
     CoachProfileComponent,
     ErrorComponent,
+    FilterByExperiencePipe,
+    FilterByExperiencePipe,
 
 
-    ],
+  ],
     imports: [
         BrowserModule,
         AppRoutingModule,
