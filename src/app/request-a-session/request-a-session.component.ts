@@ -125,11 +125,7 @@ export class RequestASessionComponent implements OnInit {
 
 
   onSubmit() {
-
     const sessionToCreate = this.sessionForm.value as Session;
-    console.log(this.location.value);
-    console.log(this.subject.value);
-    console.log(sessionToCreate.date);
     sessionToCreate.coach_id = this.activatedRoute.snapshot.paramMap.get('id')!;
     sessionToCreate.coachee_id = this.user.userId;
     this.sessionService.createSession(sessionToCreate)
