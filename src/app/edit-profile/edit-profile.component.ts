@@ -90,6 +90,7 @@ export class EditProfileComponent implements OnInit {
       this.userService.editProfile(this.currentUser?.userId!, changedUser).pipe(mergeMap(() => this.keyCloakService.refreshToken()))
         .subscribe(res => {
           this.router.navigateByUrl(`coach/${id}`);
+          window.location.href=(`coach/${id}`);
         });
     } else if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase()==="coachee") {
       console.log("I am currently a " + currentRole + " and I'd like to become a coachee.");

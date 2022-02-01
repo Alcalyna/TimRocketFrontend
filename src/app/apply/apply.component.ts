@@ -28,6 +28,7 @@ export class ApplyComponent implements OnInit {
       .pipe(mergeMap(() => this.keyCloakService.refreshToken()))
       .subscribe(res => {
         this.router.navigateByUrl(`coach/${id}`);
+        window.location.href=(`coach/${id}`);
       });
     // this.router.navigate(['coach/:this.currentUser?.userId!'])
   }
