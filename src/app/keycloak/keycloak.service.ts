@@ -35,7 +35,7 @@ export class KeycloakService {
   }
 
   getRefreshToken() : string | null {
-    console.log("This is the refresh token (should be the same): " + localStorage.getItem(this.refresh_token_key_name));
+    // console.log("This is the refresh token (should be the same): " + localStorage.getItem(this.refresh_token_key_name));
     return localStorage.getItem(this.refresh_token_key_name);
   }
 
@@ -59,14 +59,14 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
-    console.log("This is the token: " + accessToken);
+    // console.log("This is the token: " + accessToken);
     this.userService.getUserBy(this.getUsername());
     this.sendSignal();
   }
 
   private setRefreshToken(refreshToken: string) {
     localStorage.setItem(this.refresh_token_key_name, refreshToken);
-    console.log("This is the refresh token: " + refreshToken);
+    // console.log("This is the refresh token: " + refreshToken);
   }
 
   sendSignal(): void {
@@ -83,7 +83,6 @@ export class KeycloakService {
   }
 
   refreshToken(): Observable<KeycloakTokenResponse> {
-    console.log("We are here :D");
     return this.httpKeycloakService.refreshToken(this.getRefreshToken()!)
       .pipe(tap(response => {this.setToken(response.access_token)}));
   }

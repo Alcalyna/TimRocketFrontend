@@ -21,7 +21,9 @@ export class ApplyComponent implements OnInit {
   }
 
   becomeACoach() {
+    console.log("I PRESSED ON BECOME A COACH " +this.currentUser);
     const id = this.currentUser?.userId!;
+    console.log("THe id is " + id);
     this.userService.editRoleToCoach()
       .pipe(mergeMap(() => this.keyCloakService.refreshToken()))
       .subscribe(res => {

@@ -26,5 +26,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.currentUser);
   }
 
-
+  isACoachee(): boolean {
+    return this.currentUser.role.toLowerCase() === 'coachee';
+  }
 }
