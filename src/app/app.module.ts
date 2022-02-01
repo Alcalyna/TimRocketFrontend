@@ -22,14 +22,12 @@ import {SearchPipe} from './pipes/search.pipe';
 import {ErrorComponent} from './error/error.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {UploadFileComponent} from './upload-file/upload-file.component';
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
-import { CoachDetailComponent } from './coach-detail/coach-detail.component';
-import { SearchPipe } from './pipes/search.pipe';
-import { ErrorComponent } from './error/error.component';
-import { FilterByExperiencePipe } from './pipes/filter-by-experience.pipe';
+import {CoachDetailComponent} from './coach-detail/coach-detail.component';
+import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
 
 
 @NgModule({
