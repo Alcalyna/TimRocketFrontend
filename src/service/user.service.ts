@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from "../model/User";
 import {Coach} from "../model/Coach";
 import {ProfileUpdate} from "../model/ProfileUpdate";
+import {Topic} from "../model/Topic";
 
 
 @Injectable({
@@ -29,13 +30,13 @@ export class UserService {
     return this.http.get<any[]>(`${this.url}?coach=`)
   }
 
+  getTopics(): Observable<Topic[]>{
+    return this.http.get<any[]>(`${environment.backendUrl}/topics`)
+  }
+
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
   }
-
-  // getUserBy(email: string): Observable<User> {
-  //   return this.http.get<User>(`${this.url}?email=` + email);
-  // }
 
   getUserBy(email: string): Observable<User> {
     return this.http.get<User>(`${this.url}?email=` + email);
@@ -52,10 +53,6 @@ export class UserService {
   setCurrentUser(email: string) {
     this._currentUser = this.getUserBy(email);
   }
-
-  // get currentUser(): Observable<User> {
-  //   return this._currentUser;
-  // }
 
   editProfile(id: String, profileUpdate: ProfileUpdate): Observable<User> {
     return this.http.put<User>(`${this.url}/${id}`, profileUpdate);

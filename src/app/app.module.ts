@@ -27,6 +27,9 @@ import {MatCardModule} from "@angular/material/card";
 import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
 import { CoachDetailComponent } from './coach-detail/coach-detail.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { ErrorComponent } from './error/error.component';
+import { FilterByExperiencePipe } from './pipes/filter-by-experience.pipe';
 
 
 @NgModule({
@@ -45,7 +48,8 @@ import { CoachDetailComponent } from './coach-detail/coach-detail.component';
       UploadFileComponent,
       ApplyComponent,
       CoachDetailComponent,
-
+      FilterByExperiencePipe,
+      FilterByExperiencePipe,
 
     ],
     imports: [
@@ -64,13 +68,12 @@ import { CoachDetailComponent } from './coach-detail/coach-detail.component';
       RouterModule
 
     ],
-    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
     exports: [
-      HomeComponent, FilterPipe
-    ],
-    bootstrap:
-      [AppComponent]
-})
+        HomeComponent,
+        FilterPipe,
 
-export class AppModule {
-}
+    ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
