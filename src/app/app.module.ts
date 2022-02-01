@@ -29,6 +29,9 @@ import {RouterModule} from "@angular/router";
 import {CoachDetailComponent} from './coach-detail/coach-detail.component';
 import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
 import { RequestASessionComponent } from './request-a-session/request-a-session.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
 
 
 @NgModule({
@@ -52,23 +55,25 @@ import { RequestASessionComponent } from './request-a-session/request-a-session.
       RequestASessionComponent,
 
     ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      LayoutModule,
-      NoopAnimationsModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatFormFieldModule,
-      MatSelectModule,
-      MatGridListModule,
-      MatIconModule,
-      MatCardModule,
-      RouterModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    NoopAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatIconModule,
+    MatCardModule,
+    RouterModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
-    ],
-  providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
+  ],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }, DatePipe],
     exports: [
         HomeComponent,
         FilterPipe,
