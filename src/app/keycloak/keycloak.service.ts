@@ -18,10 +18,14 @@ export class KeycloakService {
   private _loggedInUser$: Subject<string | null> = new Subject();
   private _currentUser: Subject<User> = new Subject<User>();
 
+
+
   constructor(
     private httpKeycloakService: HttpKeycloakService,
     private userService: UserService
-  ) {}
+  ) {
+
+  }
 
   get loggedInUser$(): Observable<string | null> {
     return this._loggedInUser$;
@@ -51,7 +55,7 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
-    this.userService.getUserBy(this.getUsername());
+    this.userService.setCurrentUser(this.getUsername());
     this.sendSignal();
   }
 
