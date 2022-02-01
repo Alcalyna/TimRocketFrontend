@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SessionService} from "../../service/session.service";
+import {UserService} from "../../service/user.service";
+import {Time} from "@angular/common";
+import {User} from "../../model/User";
+import {Session} from "../../model/Session";
 
 @Component({
   selector: 'app-request-a-session',
@@ -7,9 +14,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestASessionComponent implements OnInit {
 
-  constructor() { }
+  public error: any;
+  private user!: User;
 
-  ngOnInit(): void {
+  sessionForm: FormGroup = this.formBuilder.group({
+    sessionId: '',
+    subject: '',
+    date: '',
+    time: '',
+    location: '',
+    f2fLocation: '',
+    remarks: ''
+  });
+
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private activedRoute: ActivatedRoute,
+              private sessionService: SessionService,
+              private userService: UserService) {
   }
 
+  ngOnInit(): void {
+    this.userService.getcurrentUser()
+      .subscribe(user => this.user = user);
+
+  }
+
+  onSubmit() {
+    const sessionToCreate = this.sessionForm.value as Session;
+    sessionToCreate.coach_id = this.activedRoute.snapshot.paramMap.get('id')!;
+    sessionToCreate.coachee_id = this.user.userId;
+    this.sessionService.createSession(sessionToCreate)
+      .subscribe(success => {
+          this.router.navigate(['profile']);
+        },
+        error => {
+          this.error = error;
+        }
+      );
+  }
 }

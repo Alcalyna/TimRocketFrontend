@@ -13,6 +13,7 @@ import {Topic} from "../model/Topic";
 })
 export class UserService {
 
+
   private _currentUser!: Observable<User>
 
   url: string
@@ -28,6 +29,10 @@ export class UserService {
 
   getCoaches(): Observable<Coach[]> {
     return this.http.get<any[]>(`${this.url}?coach=`)
+  }
+
+  getcurrentUser(): Observable<User> {
+    return this._currentUser;
   }
 
   getTopics(): Observable<Topic[]>{
