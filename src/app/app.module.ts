@@ -26,6 +26,7 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
+import { CoachDetailComponent } from './coach-detail/coach-detail.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {RouterModule} from "@angular/router";
       EditProfileComponent,
       UploadFileComponent,
       ApplyComponent,
+      CoachDetailComponent,
 
 
     ],
