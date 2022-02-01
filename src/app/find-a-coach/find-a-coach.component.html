@@ -42,7 +42,7 @@
           </header>
           <!--Start -->
           <div class="row" >
-            <ng-container *ngFor="let coach of coaches | async | search:searchTerm | filter:result | filterByExperience:selectedExperience" >
+            <ng-container *ngFor="let coach of coaches | async | search:searchTerm | filter:result | filterByExperience:selectedExperience:result" >
               <div class="col l3 m4 s12">
                 <h5 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h5>
                 <div class="card horizontal">

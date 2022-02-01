@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
 import {Topic} from "../../model/Topic";
-import {Experience} from "../../model/Experience";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
 
 @Component({
@@ -21,7 +19,6 @@ export class FindACoachComponent implements OnInit {
   selectedOption?: string;
   result?: string;
   selectedExperience: string[] = [];
-
 
   constructor(
     private userService: UserService
@@ -41,8 +38,4 @@ export class FindACoachComponent implements OnInit {
   onChange(value:any){
     this.result = value;
   }
-
-
-
-
 }
