@@ -28,6 +28,7 @@ import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
 import {CoachDetailComponent} from './coach-detail/coach-detail.component';
 import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
+import { RequestASessionComponent } from './request-a-session/request-a-session.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
       CoachDetailComponent,
       FilterByExperiencePipe,
       FilterByExperiencePipe,
+      RequestASessionComponent,
 
     ],
     imports: [

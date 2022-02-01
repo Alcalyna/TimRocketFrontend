@@ -10,6 +10,7 @@ import {ErrorComponent} from "./error/error.component";
 import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {ApplyComponent} from "./apply/apply.component";
 import {CoachDetailComponent} from "./coach-detail/coach-detail.component";
+import {RequestASessionComponent} from "./request-a-session/request-a-session.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'find-a-coach', component: FindACoachComponent},
   { path: 'coach/:id', component: CoachProfileComponent},
   { path: 'coach-detail/:id', component: CoachDetailComponent},
+  { path: 'coach-detail/session/:id', component: RequestASessionComponent},
   { path: 'error', component: ErrorComponent},
   { path: 'edit-profile', component: EditProfileComponent},
   { path: 'apply', component: ApplyComponent}
