@@ -11,6 +11,8 @@ import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {ApplyComponent} from "./apply/apply.component";
 import {CoachDetailComponent} from "./coach-detail/coach-detail.component";
 import {RequestASessionComponent} from "./request-a-session/request-a-session.component";
+import {AboutComponent} from "./about/about.component";
+import {ContactComponent} from "./contact/contact.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'coach-detail/session/:id', component: RequestASessionComponent},
   { path: 'error', component: ErrorComponent},
   { path: 'edit-profile', component: EditProfileComponent},
-  { path: 'apply', component: ApplyComponent}
+  { path: 'apply', component: ApplyComponent},
+  { path: 'about', component: AboutComponent},
+  { path: 'contact', component: ContactComponent}
 ];
 
 @NgModule({
