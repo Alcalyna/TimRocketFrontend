@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../model/User";
 import {KeycloakService} from "../../keycloak/keycloak.service";
+import {async, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -13,22 +14,17 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private keyCloakService: KeycloakService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    // let roles = this.keyCloakService.getRoles();
-    // console.log(roles[0]);
-    //console.log(this.keyCloakService.getKeycloakInstance().realmAccess.roles);
-
   }
+
+
 
   isLoggedIn(){
     return this.keyCloakService.isLoggedIn();
   }
 
-  coach(){
-  }
 
   logout(){
     this.keyCloakService.logout();

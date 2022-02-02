@@ -9,38 +9,75 @@
 
         <div class="row">
           <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="col s12">
+
             <div class="row">
               <div class="input-field col s12">
                 <textarea formControlName="subject" id="topic" class="materialize-textarea"></textarea>
                 <label for="topic">On which topic/subject would you like to have a coaching session?</label>
+                <div *ngIf="subject.errors?.['required'] && !subject.pristine">
+                  <p>Please provide a subject</p>
+                </div>
+                <div *ngIf="subject.errors?.['maxlength'] && !subject.pristine">
+                  <p>Subject can only contains max 25 characters</p>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="input-field col s6">
 
+            <div class="row">
+
+              <div class="input-field col s6">
                 <input formControlName="date" id="datepicker" type="text" class="datepicker">
                 <label for="datepicker">Date</label>
-
+                <div *ngIf="date.errors?.['required'] && !date.pristine">
+                  <p>Please provide a date</p>
+                </div>
               </div>
+
               <div class="input-field col s6">
                 <input formControlName="time" id="timepicker" type="text" class="timepicker">
                 <label for="timepicker">Time</label>
+                <div *ngIf="time.errors?.['required'] && !time.pristine">
+                  <p>Please provide a date</p>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input formControlName="location" id="location" type="text" class="autocomplete">
+                <select formControlName="location" id="location" class="autocomplete">
+                  <option value="" disable selected>Choose a location</option>
+                  <option value="f2f">F2F</option>
+                  <option value="online">Online</option>
+                </select>
                 <label for="location">Location</label>
+                <div *ngIf="location.errors?.['required'] && !location.pristine">
+                  <p>Please provide a location</p>
+                </div>
               </div>
             </div>
+
+            <div *ngIf="location.value === 'f2f'" class="row">
+              <div class="input-field col s12">
+                <textarea formControlName="f2fLocation" id="f2fLocation" class="materialize-textarea"></textarea>
+                <label for="f2fLocation">F2F Location</label>
+                <div *ngIf="f2fLocation.errors?.['required'] && !f2fLocation.pristine">
+                  <p>Please provide a location</p>
+                </div>
+              </div>
+            </div>
+
+
             <div class="row">
               <div class="input-field col s12">
                 <textarea formControlName="remarks" id="remarks" class="materialize-textarea"></textarea>
                 <label for="remarks">Remarks for the coach?</label>
+                <div *ngIf="remarks.errors?.['maxlength'] && !remarks.pristine">
+                  <p>Remarks can only be 250 characters</p>
+                </div>
               </div>
             </div>
             <div class="row right-align">
-              <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text">Request
+              <button type="submit" [disabled]="!sessionForm.valid"
+                      class="waves-effect waves-light yellow darken-2 btn-large black-text">Request
                 session<i class="material-icons right">send</i></button>
             </div>
           </form>
