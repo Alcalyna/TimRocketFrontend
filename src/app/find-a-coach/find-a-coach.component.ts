@@ -3,6 +3,8 @@ import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
 import {Topic} from "../../model/Topic";
 import {Observable} from "rxjs";
+import {User} from "../../model/User";
+import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-find-a-coach',
@@ -11,6 +13,7 @@ import {Observable} from "rxjs";
 })
 export class FindACoachComponent implements OnInit {
 
+  loggedInUser!: User;
   coaches!: Observable<Coach[]>;
   topics!: Topic[];
   selected: string[] = [];
@@ -21,14 +24,17 @@ export class FindACoachComponent implements OnInit {
   selectedExperience: string[] = [];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private keyCloakService: KeycloakService
   ) {
   }
 
   ngOnInit(): void {
-
     this.coaches = this.userService.getCoaches();
-    this.userService.getTopics().subscribe(topics => this.topics = topics)
+    this.userService.getTopics().subscribe(topics => this.topics = topics);
+    this.userService
+      .getUserBy(this.keyCloakService.getUsername())
+      .subscribe(user => this.loggedInUser = user)
   }
 
   getInputValue(term: string) {

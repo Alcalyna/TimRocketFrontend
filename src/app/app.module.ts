@@ -32,6 +32,7 @@ import { RequestASessionComponent } from './request-a-session/request-a-session.
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
+import { FilterCurrentUserPipe } from './pipes/filter-current-user.pipe';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {DatePipe} from "@angular/common";
       FilterByExperiencePipe,
       FilterByExperiencePipe,
       RequestASessionComponent,
+      FilterCurrentUserPipe,
 
     ],
   imports: [
