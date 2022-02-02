@@ -7,7 +7,8 @@ import * as M from 'materialize-css';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -15,5 +16,4 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit(): void {
     setTimeout(() => M.Parallax.init(document.querySelectorAll('.parallax')));
   }
-
 }
