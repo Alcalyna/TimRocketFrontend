@@ -6,11 +6,10 @@ import {Coach} from "../../model/Coach";
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(coaches: Coach[] | null, filterparameter: string | undefined ) {
-    if (!coaches || filterparameter == "" || !filterparameter) {
+  transform(coaches: Coach[] | null, listOfTopics: string | undefined ) {
+    if (!coaches || listOfTopics == "" || !listOfTopics) {
       return coaches
     }
-
-    return coaches.filter(coach => coach.coachTopics.some(topic => topic.name.toLowerCase().includes(filterparameter.toLowerCase())))
+    return coaches.filter(coach => coach.coachTopics.some(topic => topic.name.toLowerCase().includes(listOfTopics.toLowerCase())))
   }
 }
