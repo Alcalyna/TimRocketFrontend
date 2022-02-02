@@ -1,15 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {User} from "../../model/User";
+import {Coach} from "../../model/Coach";
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(users: User[], filterparameter: string | undefined) {
-    return users?.filter((user) => {
-      return user.role === filterparameter;
-    })
-  }
+  transform(coaches: Coach[] | null, filterparameter: string | undefined ) {
+    if (!coaches || filterparameter == "" || !filterparameter) {
+      return coaches
+    }
 
+    return coaches.filter(coach => coach.coachTopics.some(topic => topic.name.toLowerCase().includes(filterparameter.toLowerCase())))
+  }
 }

@@ -18,10 +18,14 @@ export class KeycloakService {
   private _loggedInUser$: Subject<string | null> = new Subject();
   private _currentUser: Subject<User> = new Subject<User>();
 
+
+
   constructor(
     private httpKeycloakService: HttpKeycloakService,
     private userService: UserService
-  ) {}
+  ) {
+
+  }
 
   get loggedInUser$(): Observable<string | null> {
     return this._loggedInUser$;
@@ -36,7 +40,6 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-    this.userService.getUserBy(loginData.email).subscribe(user => this._currentUser.next(user));
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }
@@ -52,6 +55,7 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
+    this.userService.setCurrentUser(this.getUsername());
     this.sendSignal();
   }
 
@@ -67,4 +71,5 @@ export class KeycloakService {
     return "";
     //this returned null, so maybe refactoring is needed.
   }
+
 }

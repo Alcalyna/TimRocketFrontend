@@ -13,46 +13,41 @@
                 <label>Filter by Topic</label>
                 <br>
                 <mat-form-field appearance="fill">
-                  <mat-label>Choose topic</mat-label>
-                  <mat-select>
-                    <mat-option value="1">Biology</mat-option>
-                    <mat-option value="2">Chemistry</mat-option>
-                    <mat-option value="3">Mathematics</mat-option>
+                  <mat-label>Choose Topic</mat-label>
+                  <mat-select #selectedCategory (selectionChange)="onChange(selectedCategory.value)">
+                    <mat-option>All Coaches</mat-option>
+                    <mat-option *ngFor="let topic of topics" [value]="topic.name">{{topic.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
 
               </div>
               <div class="col l3 m6 s12">
-                <label>Filter by Year</label>
+                <label>Filter by Experience Level</label>
                 <br>
                 <mat-form-field appearance="fill">
-                  <mat-label>Choose year</mat-label>
-                  <mat-select multiple>
-                    <mat-option value="1">year 1</mat-option>
-                    <mat-option value="2">year 2</mat-option>
-                    <mat-option value="3">year 3</mat-option>
-                    <mat-option value="1">year 4</mat-option>
-                    <mat-option value="2">year 5</mat-option>
-                    <mat-option value="3">year 6</mat-option>
-                    <mat-option value="3">year 7</mat-option>
+                  <mat-label>Choose Experience Level</mat-label>
+                  <mat-select [(ngModel)]="selectedExperience" multiple>
+                    <mat-option [value]="'All Selected'">All Experience Levels</mat-option>
+                    <mat-option *ngFor="let experience of experiencesList" [value]="experience">{{experience}}</mat-option>
                   </mat-select>
                 </mat-form-field>
+
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate">
+                <input id="icon_prefix" type="text" class="validate" #searchbox (input)="getInputValue(searchbox.value)">
                 <label for="icon_prefix">First name, last name or email</label>
               </div>
             </div>
           </header>
           <!--Start -->
           <div class="row" >
-            <ng-container *ngFor="let user of users | filter:'COACH'">
+            <ng-container *ngFor="let coach of coaches | async | search:searchTerm | filter:result | filterByExperience:selectedExperience" >
               <div class="col l3 m4 s12">
-                <h5 class="header">{{user.firstName}} {{user.lastName}}</h5>
+                <h5 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h5>
                 <div class="card horizontal">
                   <div class="card-image">
-                    <img src="{{user.pictureUrl}}">
+                    <img src="{{coach.user.pictureUrl}}">
 
                   </div>
                   <div class="card-stacked">
@@ -60,17 +55,14 @@
                       <table class="highlight responsive-table">
                         <tbody>
                         <tr>
-                          <td><strong>Mathematics</strong></td>
-                          <td>1,2,3</td>
-                        </tr>
-                        <tr>
-                          <td><strong>Biology</strong></td>
-                          <td>1,2</td>
+                          <span *ngFor="let topic of coach.coachTopics">
+                          <td>{{topic.name}} / {{topic.experience}}</td>
+                          </span>
                         </tr>
                         </tbody>
                       </table>
                     </div>
-                    <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
+                    <a [routerLink]="['../coach-detail/'] + coach.user.userId " class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
                       class="material-icons">send</i></a>
                   </div>
                 </div>

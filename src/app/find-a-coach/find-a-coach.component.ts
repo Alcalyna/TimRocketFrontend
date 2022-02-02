@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
+import {Coach} from "../../model/Coach";
+import {Topic} from "../../model/Topic";
+import {Experience} from "../../model/Experience";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -10,7 +14,15 @@ import {UserService} from "../../service/user.service";
 })
 export class FindACoachComponent implements OnInit {
 
-  users!: User[];
+  coaches!: Observable<Coach[]>;
+  topics!: Topic[];
+  selected: string[] = [];
+  experiencesList = ["JUNIOR", "MEDIOR", "SENIOR"];
+  searchTerm?: string;
+  selectedOption?: string;
+  result?: string;
+  selectedExperience: string[] = [];
+
 
   constructor(
     private userService: UserService
@@ -19,8 +31,19 @@ export class FindACoachComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getUsers().subscribe(users => this.users = users);
-    // var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instances = Dropdown.init(elems, {});
+    this.coaches = this.userService.getCoaches();
+    this.userService.getTopics().subscribe(topics => this.topics = topics)
   }
+
+  getInputValue(term: string) {
+    this.searchTerm = term;
+  }
+
+  onChange(value:any){
+    this.result = value;
+  }
+
+
+
+
 }

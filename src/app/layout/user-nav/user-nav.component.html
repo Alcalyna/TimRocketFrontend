@@ -1,8 +1,21 @@
-<div class="nav-content yellow darken-2">
-  <div class="container">
+<div *ngIf="!hasRoute('coach/')" class="nav-content yellow darken-2">
+<!--<div *ngIf="currentUser?.role?.toLowerCase() === 'coachee'" class="nav-content yellow darken-2">-->
+<div class="container">
     <ul class="tabs tabs-transparent">
       <li class="tab"><a class="black-text" href="#test1" [routerLink]="['profile']">My Profile</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#test2" [routerLink]="['find-a-coach']">Find a coach</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" [routerLink]="['find-a-coach']">Find a coach</a></li>
+      <li *ngIf="currentUser?.role?.toLowerCase() === 'coach'" class="tab"><a class="black-text" [routerLink]="['coach/' + currentUser?.userId]">My Coach Profile</a></li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="hasRoute('coach/')" class="nav-content teal lighten-3">
+<!--<div *ngIf="currentUser?.role?.toLocaleLowerCase() === 'coach'" class="nav-content teal lighten-3">-->
+  <div class="container">
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a class="black-text"  [routerLink]="['profile']">My Profile</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" [routerLink]="['find-a-coach']">Find a coach</a></li>
+      <li class="tab"><a class="black-text" [routerLink]="['coach/' + currentUser?.userId]">My Coach Profile</a></li>
     </ul>
   </div>
 </div>
