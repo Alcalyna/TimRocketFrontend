@@ -36,6 +36,8 @@ import { FilterCurrentUserPipe } from './pipes/filter-current-user.pipe';
 import {MatInputModule} from "@angular/material/input";
 import { SessionsOverviewCoacheeComponent } from './sessions-overview-coachee/sessions-overview-coachee.component';
 import { FilterSessionsWithCoacheeIdPipe } from './pipes/sessions/filter-sessions-with-coachee-id.pipe';
+import { SessionsOverviewCoachComponent } from './sessions-overview-coach/sessions-overview-coach.component';
+import { FilterSessionsWithCoachIdPipe } from './pipes/sessions/filter-sessions-with-coach-id.pipe';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { FilterSessionsWithCoacheeIdPipe } from './pipes/sessions/filter-session
       SessionsOverviewCoacheeComponent,
       FilterSessionsWithCoacheeIdPipe,
       FilterCurrentUserPipe,
+      SessionsOverviewCoachComponent,
+      FilterSessionsWithCoachIdPipe,
 
     ],
   imports: [

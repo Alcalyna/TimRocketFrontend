@@ -27,8 +27,4 @@ export class SessionsOverviewCoacheeComponent implements OnInit {
     console.log(this.currentUser)
   }
 
-  getUserFullName(id: string) {
-    console.log(this.userService.getUser(id).subscribe(
-    ));
-  }
 }

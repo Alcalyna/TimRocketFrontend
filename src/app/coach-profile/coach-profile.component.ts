@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {UserService} from "../../service/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Coach} from "../../model/Coach";
 
 @Component({
@@ -14,7 +14,8 @@ export class CoachProfileComponent implements OnInit {
   coach: Coach | undefined
 
   constructor(private userService: UserService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +26,10 @@ export class CoachProfileComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.userService.getCoach(id!)
       .subscribe(coach => this.coach = coach);
+  }
+
+  navigate(): any {
+    this.router.navigate(['coach/my-sessions'])
   }
 
 }
