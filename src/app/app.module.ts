@@ -28,9 +28,11 @@ import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
 import {CoachDetailComponent} from './coach-detail/coach-detail.component';
 import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
-import {RequestASessionComponent} from './request-a-session/request-a-session.component';
+import { RequestASessionComponent } from './request-a-session/request-a-session.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
+import { FilterCurrentUserPipe } from './pipes/filter-current-user.pipe';
 import {MatInputModule} from "@angular/material/input";
 
 
@@ -53,6 +55,7 @@ import {MatInputModule} from "@angular/material/input";
       FilterByExperiencePipe,
       FilterByExperiencePipe,
       RequestASessionComponent,
+      FilterCurrentUserPipe,
 
     ],
   imports: [
