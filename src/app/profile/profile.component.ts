@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
   getUser(id: string) {
     console.log("The id is " + id);
     this.userService.getUser(id!)
-      .subscribe(user => this.userToDisplay == null ? this.router.navigateByUrl('') : this.userToDisplay = user
+      .subscribe(user => user == null && !(this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) ? this.router.navigateByUrl('') : this.userToDisplay = user
       );
   }
 
