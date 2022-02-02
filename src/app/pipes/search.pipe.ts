@@ -7,8 +7,8 @@ import {Coach} from "../../model/Coach";
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(coaches: Coach[], searchString: string | undefined){
-    if (coaches.length === 0 || searchString === '' || !searchString || searchString.length < 3) {
+  transform(coaches: Coach[] | null, searchString: string | undefined){
+    if (!coaches || coaches.length === 0 || searchString === '' || !searchString || searchString.length < 3) {
       return coaches;
     }
 
