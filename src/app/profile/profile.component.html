@@ -4,9 +4,9 @@
     <div class="content-container">
       <h6>My Profile</h6>
       <div class="collection">
-        <a class="collection-item black-text active yellow darken-2" [routerLink]="['profile']" >Profile Information</a>
-        <a class="collection-item grey-text text-darken-2" [routerLink]="['../my-sessions-as-coachee']" >Coaching sessions</a>
-        <a class="collection-item grey-text text-darken-2"  [routerLink]="['../apply']">Apply to become a coach</a>
+        <a href="#!" class="collection-item black-text active yellow darken-2" [routerLink]="['profile']" >Profile Information</a>
+        <a href="#!" class="collection-item grey-text text-darken-2" [routerLink]="['../my-sessions-as-coachee']">Coaching sessions</a>
+        <a  *ngIf="isACoachee()" href="#!" class="collection-item grey-text text-darken-2"  [routerLink]="['../apply']">Apply to become a coach</a>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ export class UserService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${this.url}/${id}`);
+    return this.http.get<User>(`${this.url}/${id}?user=`);
   }
 
   getCoach(id: string): Observable<Coach>{
@@ -63,9 +63,11 @@ export class UserService {
     return this.http.put<User>(`${this.url}/${id}`, profileUpdate);
   }
 
-  editRoleToCoach(id : String): Observable<User> {
-    return this.http.put<User>(this.url, id);
+  editRoleToCoach(): Observable<User> {
+    return this.http.put<User>(this.url, null);
   }
+
+
 
 
 }

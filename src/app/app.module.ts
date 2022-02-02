@@ -31,6 +31,8 @@ import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
 import {RequestASessionComponent} from './request-a-session/request-a-session.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
+import { FilterCurrentUserPipe } from './pipes/filter-current-user.pipe';
 import {MatInputModule} from "@angular/material/input";
 import { SessionsOverviewCoacheeComponent } from './sessions-overview-coachee/sessions-overview-coachee.component';
 import { FilterSessionsWithCoacheeIdPipe } from './pipes/sessions/filter-sessions-with-coachee-id.pipe';
@@ -57,6 +59,7 @@ import { FilterSessionsWithCoacheeIdPipe } from './pipes/sessions/filter-session
       RequestASessionComponent,
       SessionsOverviewCoacheeComponent,
       FilterSessionsWithCoacheeIdPipe,
+      FilterCurrentUserPipe,
 
     ],
   imports: [
