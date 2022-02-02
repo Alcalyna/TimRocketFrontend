@@ -14,7 +14,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.router.url === '/register') {
+    if (this.router.url === '/register' || this.router.url.match("/user/")) {
       return next.handle(req);
     }
 

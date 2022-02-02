@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../model/User";
-import {KeycloakService} from "../keycloak/keycloak.service";
-import {Observable} from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +7,13 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => M.Parallax.init(document.querySelectorAll('.parallax')));
+  }
 }
