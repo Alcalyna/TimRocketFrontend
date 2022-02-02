@@ -18,6 +18,7 @@ export class KeycloakService {
   private readonly refresh_token_key_name = 'refresh_token';
   private _loggedInUser$: Subject<string | null> = new Subject();
   private _currentUser: Subject<User> = new Subject<User>();
+  public loggedInUser!: User;
 
   constructor(
     private httpKeycloakService: HttpKeycloakService,
@@ -54,11 +55,14 @@ export class KeycloakService {
 
   logout(): void {
     localStorage.removeItem(this.token_key_name);
+    localStorage.removeItem('loggedInUser');
     this.sendSignal();
   }
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
+    // localStorage.setItem('loggedInUser', JSON.stringify(this.userService.getUserBy(this.getUsername())));
+    this.userService.getUserBy(this.getUsername()).subscribe(user => localStorage.setItem('loggedInUser', JSON.stringify(user)));
     this.userService.setCurrentUser(this.getUsername());
     this.sendSignal();
   }
