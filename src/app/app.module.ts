@@ -22,10 +22,17 @@ import {SearchPipe} from './pipes/search.pipe';
 import {ErrorComponent} from './error/error.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {UploadFileComponent} from './upload-file/upload-file.component';
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {ApplyComponent} from './apply/apply.component';
 import {RouterModule} from "@angular/router";
+import {CoachDetailComponent} from './coach-detail/coach-detail.component';
+import {FilterByExperiencePipe} from './pipes/filter-by-experience.pipe';
+import { RequestASessionComponent } from './request-a-session/request-a-session.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
+import { FilterCurrentUserPipe } from './pipes/filter-current-user.pipe';
 
 
 @NgModule({
@@ -43,32 +50,37 @@ import {RouterModule} from "@angular/router";
       EditProfileComponent,
       UploadFileComponent,
       ApplyComponent,
-
-
-    ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      LayoutModule,
-      NoopAnimationsModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatFormFieldModule,
-      MatSelectModule,
-      MatGridListModule,
-      MatIconModule,
-      MatCardModule,
-      RouterModule
+      CoachDetailComponent,
+      FilterByExperiencePipe,
+      FilterByExperiencePipe,
+      RequestASessionComponent,
+      FilterCurrentUserPipe,
 
     ],
-    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    NoopAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatIconModule,
+    MatCardModule,
+    RouterModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
+  ],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }, DatePipe],
     exports: [
-      HomeComponent, FilterPipe
-    ],
-    bootstrap:
-      [AppComponent]
-})
+        HomeComponent,
+        FilterPipe,
 
-export class AppModule {
-}
+    ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

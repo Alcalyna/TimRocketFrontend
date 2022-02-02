@@ -5,6 +5,7 @@ import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileUpdate} from "../../model/ProfileUpdate";
 import {Router} from "@angular/router";
+import {mergeMap} from "rxjs";
 
 @Component({
   selector: 'app-edit-profile',
@@ -26,12 +27,11 @@ export class EditProfileComponent implements OnInit {
   ctlRole!: FormControl;
 
 
-
   constructor(
     private formBuilder: FormBuilder,
     private keyCloakService: KeycloakService,
     private userService: UserService,
-    private router : Router
+    private router: Router
   ) {
 
     this.ctlFirstName = this.formBuilder.control("", [Validators.maxLength(25), Validators.minLength(2)]);
@@ -69,6 +69,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const id = this.currentUser?.userId!;
+    const currentRole = this.currentUser?.role;
+    console.log("The current role is " + currentRole);
     console.log(this.editForm.value);
     let changedUser: ProfileUpdate = {
       firstName: this.editForm.value.firstName,
@@ -77,17 +80,35 @@ export class EditProfileComponent implements OnInit {
       role: this.editForm.value.role
       //pictureUrl: this.editForm.value.pictureUrl
     }
-    console.log(this.currentUser);
-    console.log(this.currentUser.role);
-    console.log(this.editForm.value);
-    this.userService.editProfile(this.currentUser?.userId!, changedUser).subscribe(res => {
-      //window.location.href="/profile";
-      this.router.navigate(['profile']);
-    });
+    // console.log(this.currentUser);
+    // console.log(this.currentUser.role);
+    // console.log(this.editForm.value);
+    console.log("The new role is " + changedUser.role);
 
+    if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase() === "coach") {
+      console.log("I am currently a " + currentRole + " and I'd like to become a coach.");
+      this.userService.editProfile(this.currentUser?.userId!, changedUser).pipe(mergeMap(() => this.keyCloakService.refreshToken()))
+        .subscribe(res => {
+          this.router.navigateByUrl(`coach/${id}`);
+          window.location.href=(`coach/${id}`);
+        });
+    } else if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase()==="coachee") {
+      console.log("I am currently a " + currentRole + " and I'd like to become a coachee.");
+      this.userService.editProfile(this.currentUser?.userId!, changedUser).pipe(mergeMap(() => this.keyCloakService.refreshToken()))
+        .subscribe(res => {
+          this.router.navigateByUrl(`profile`);
+        });
+    } else {
+      console.log("I am currently a " + currentRole + " and I don't want to change my role.");
+      this.userService.editProfile(this.currentUser?.userId!, changedUser).subscribe(res => {
+        //window.location.href="/profile";
+        this.router.navigate(['profile']);
+      });
+    }
   }
 
-  getCurrentUser(): User {
-    return this.currentUser = this.userService.currentUser;
-  }
+
+getCurrentUser(): User {
+  return this.currentUser = this.userService.currentUser;
+}
 }
