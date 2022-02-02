@@ -17,7 +17,7 @@ export class ApplyComponent implements OnInit {
   constructor(private userService : UserService, private keyCloakService: KeycloakService, private router : Router) { }
 
   ngOnInit(): void {
-    this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user => this.currentUser = user);
+    this.currentUser = JSON.parse(localStorage.getItem('loggedInUser')!);
   }
 
   becomeACoach() {

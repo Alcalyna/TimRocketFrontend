@@ -4,8 +4,8 @@
       <a id="logo-container" href="#" class="brand-logo"><span class="mynav">Tim Rocket</span></a>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['/']"><span class="mynav">Home</span></a></li>
-        <li><a href="#"><span class="mynav">About us</span></a></li>
-        <li><a href="#"><span class="mynav">Contact</span></a></li>
+        <li><a [routerLink]="['about']"><span class="mynav">About us</span></a></li>
+        <li><a [routerLink]="['contact']"><span class="mynav">Contact</span></a></li>
 
         <ng-container *ngIf="!isLoggedIn()">
           <li>

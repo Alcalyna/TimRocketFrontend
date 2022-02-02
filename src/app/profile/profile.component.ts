@@ -4,6 +4,7 @@ import {KeycloakService} from "../keycloak/keycloak.service";
 import {finalize, Observable} from "rxjs";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {type} from "jquery";
 
 @Component({
   selector: 'app-profile',
@@ -29,24 +30,23 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if(this.keyCloakService.isLoggedIn() && id == null) {
+    if (this.keyCloakService.isLoggedIn() && id == null) {
       this.userService.getUserBy(this.keyCloakService.getUsername())
-          .subscribe(
+        .subscribe(
           user => {
-              this.currentUser = user, this.userToDisplay = user
+            this.currentUser = user, this.userToDisplay = user
           });
     } else {
       this.userToDisplayId = id;
     }
     this.getUser(this.userToDisplayId!);
-    if(this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) {
+    if (this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) {
       this.router.navigateByUrl('/profile');
     }
-
-      }
+  }
 
   isACoachee(): boolean {
-    if(this.keyCloakService.isLoggedIn()) {
+    if (this.keyCloakService.isLoggedIn()) {
       // console.log("The role is " + JSON.parse(localStorage.getItem('loggedInUser')!).role.toLowerCase());
       return JSON.parse(localStorage.getItem('loggedInUser')!).role.toLowerCase() === 'coachee';
     }
@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
   getUser(id: string) {
     console.log("The id is " + id);
     this.userService.getUser(id!)
-      .subscribe(user => this.userToDisplay = user
+      .subscribe(user => user == null && !(this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) ? this.router.navigateByUrl('') : this.userToDisplay = user
       );
   }
 
