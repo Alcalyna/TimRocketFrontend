@@ -32,6 +32,8 @@ import {RequestASessionComponent} from './request-a-session/request-a-session.co
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
+import { SessionsOverviewCoacheeComponent } from './sessions-overview-coachee/sessions-overview-coachee.component';
+import { FilterWithIdPipe } from './pipes/sessions/filter-with-id.pipe';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import {MatInputModule} from "@angular/material/input";
       FilterByExperiencePipe,
       FilterByExperiencePipe,
       RequestASessionComponent,
+      SessionsOverviewCoacheeComponent,
+      FilterWithIdPipe,
 
     ],
   imports: [
