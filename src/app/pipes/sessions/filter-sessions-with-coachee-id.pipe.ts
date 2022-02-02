@@ -10,7 +10,7 @@ export class FilterSessionsWithCoacheeIdPipe implements PipeTransform {
     if (!sessions) {
       return sessions;
     }
-    return sessions.filter(session => session.coachee_id == idOfCoachee);
+    return sessions.filter(session => session.coachee.userId === idOfCoachee);
 
   }
 

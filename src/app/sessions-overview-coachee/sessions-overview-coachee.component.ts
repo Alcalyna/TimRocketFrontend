@@ -23,9 +23,8 @@ export class SessionsOverviewCoacheeComponent implements OnInit {
 
   ngOnInit(): void {
     this.sessions = this.sessionService.getAllSessions()
-    // console.log(this.userService.getUser(id).subscribe())
-    this.userService.getUserBy(this.keyCloakService.getUsername()).subscribe(user =>
-      this.currentUser = user)
+    this.currentUser = JSON.parse(localStorage.getItem('loggedInUser')!)
+    console.log(this.currentUser)
   }
 
   getUserFullName(id: string) {

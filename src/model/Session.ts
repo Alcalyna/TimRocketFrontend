@@ -1,5 +1,6 @@
 import {Time} from "@angular/common";
 import {User} from "./User";
+import {Coach} from "./Coach";
 
 export interface Session {
   sessionId : string
@@ -11,5 +12,6 @@ export interface Session {
   remarks: string;
   coachee_id: string;
   coach_id: string;
-  coach: User
+  coach: Coach;
+  coachee: User;
 }
