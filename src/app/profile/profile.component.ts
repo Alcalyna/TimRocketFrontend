@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
-import {mergeMap, Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Coach} from "../../model/Coach";
-import {type} from "jquery";
-import {serialize} from "@angular/compiler/src/i18n/serializers/xml_helper";
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +27,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const id = this.route.snapshot.paramMap.get('id');
 
     if (this.keyCloakService.isLoggedIn()) {
@@ -41,7 +37,6 @@ export class ProfileComponent implements OnInit {
       );
     }
     this.getUser(id!);
-
   }
 
   isACoachee(): boolean {

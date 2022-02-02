@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Coach} from "../../model/Coach";
+import {Topic} from "../../model/Topic";
+import {Observable} from "rxjs";
+import {User} from "../../model/User";
+import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-find-a-coach',
@@ -9,22 +13,35 @@ import {Coach} from "../../model/Coach";
 })
 export class FindACoachComponent implements OnInit {
 
-  coaches!: Coach[];
+  loggedInUser!: User;
+  coaches!: Observable<Coach[]>;
+  topics!: Topic[];
+  selected: string[] = [];
+  experiencesList = ["JUNIOR", "MEDIOR", "SENIOR"];
   searchTerm?: string;
+  selectedOption?: string;
+  result?: string;
+  selectedExperience: string[] = [];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private keyCloakService: KeycloakService
   ) {
   }
 
   ngOnInit(): void {
-
-    this.userService.getCoaches().subscribe(coaches => this.coaches = coaches);
-    // var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instances = Dropdown.init(elems, {});
+    this.coaches = this.userService.getCoaches();
+    this.userService.getTopics().subscribe(topics => this.topics = topics);
+    this.userService
+      .getUserBy(this.keyCloakService.getUsername())
+      .subscribe(user => this.loggedInUser = user)
   }
 
   getInputValue(term: string) {
     this.searchTerm = term;
+  }
+
+  onChange(value:any){
+    this.result = value;
   }
 }
