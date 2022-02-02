@@ -33,7 +33,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import { SessionsOverviewCoacheeComponent } from './sessions-overview-coachee/sessions-overview-coachee.component';
-import { FilterWithIdPipe } from './pipes/sessions/filter-with-id.pipe';
+import { FilterSessionsWithCoacheeIdPipe } from './pipes/sessions/filter-sessions-with-coachee-id.pipe';
 
 
 @NgModule({
@@ -56,7 +56,7 @@ import { FilterWithIdPipe } from './pipes/sessions/filter-with-id.pipe';
       FilterByExperiencePipe,
       RequestASessionComponent,
       SessionsOverviewCoacheeComponent,
-      FilterWithIdPipe,
+      FilterSessionsWithCoacheeIdPipe,
 
     ],
   imports: [
