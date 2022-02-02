@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'user/:id', component: ProfileComponent},
   { path: 'find-a-coach', component: FindACoachComponent},
   { path: 'coach/:id', component: CoachProfileComponent},
   { path: 'error', component: ErrorComponent},

@@ -23,7 +23,7 @@
         <div class="divider"></div>
         <div class="row">
           <div class="col l2 m2 s12">
-            <img src="{{ currentUser?.pictureUrl }}" class="responsive-img circle"
+            <img src="{{ userToDisplay?.pictureUrl }}" class="responsive-img circle"
                  alt="Profile Picture">
           </div>
           <div class="col l10 m12 s12">
@@ -31,20 +31,20 @@
               <tbody>
               <tr>
                 <td><strong>First name</strong></td>
-                <td> {{ currentUser?.firstName }} </td>
+                <td> {{ userToDisplay?.firstName }} </td>
               </tr>
               <tr>
                 <td><strong>Last name</strong></td>
-                <td> {{ currentUser?.lastName }} </td>
+                <td> {{ userToDisplay?.lastName }} </td>
               </tr>
               <tr>
                 <td><strong>Email</strong></td>
-                    <td> {{ currentUser?.email }} </td>
+                    <td> {{ userToDisplay?.email }} </td>
               </tr>
 
               <tr>
                 <td><strong>CodeCoach role</strong></td>
-                     <td> {{ currentUser?.role }} </td>
+                     <td> {{ userToDisplay?.role }} </td>
               </tr>
               </tbody>
             </table>

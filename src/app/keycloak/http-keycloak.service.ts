@@ -38,13 +38,6 @@ export class HttpKeycloakService {
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions)
   }
 
-  // Method: POST
-  // URL: https://keycloak.example.com/auth/realms/myrealm/protocol/openid-connect/token
-  // Body type: x-www-form-urlencoded
-  // Form fields:
-  // client_id : <my-client-name>
-  // grant_type : refresh_token
-  // refresh_token: <my-refresh-token>
 
 
 }

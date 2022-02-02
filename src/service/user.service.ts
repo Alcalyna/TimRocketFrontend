@@ -42,7 +42,7 @@ export class UserService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${this.url}/${id}`);
+    return this.http.get<User>(`${this.url}/${id}?user=`);
   }
 
   getCoach(id: string): Observable<Coach>{

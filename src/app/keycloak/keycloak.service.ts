@@ -59,8 +59,7 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
-    // console.log("This is the token: " + accessToken);
-    this.userService.getUserBy(this.getUsername());
+    this.userService.setCurrentUser(this.getUsername());
     this.sendSignal();
   }
 
