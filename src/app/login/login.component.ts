@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   message!: string;
   ctlEmail!: FormControl;
   ctlPassWord!: FormControl;
+  public error: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.ctlEmail = this.formBuilder.control("", [Validators.required, Validators.email, Validators.maxLength(50)]);
-    this.ctlPassWord = this.formBuilder.control("", [Validators.required, Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,25}$")]);
+    this.ctlPassWord = this.formBuilder.control("", [Validators.required]);
     this.loginForm = this.formBuilder.group({
       email: this.ctlEmail,
       password: this.ctlPassWord
@@ -32,7 +33,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit(loginData: any) {
     this.keycloakService.logIn(loginData)
-      .subscribe(_ => this.router.navigateByUrl('/'));
+      .subscribe(success => {this.router.navigateByUrl('/profile')
+      },
+        error => {
+        this.error = "Your password is incorrect or this account doesn't exist." + "Please reset your password or create a new account.";
+        console.log(error);
+        });
+    console.log(this.keycloakService.getUsername());
   }
 
 

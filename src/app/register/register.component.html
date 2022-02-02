@@ -5,7 +5,7 @@
         <h1 class="center teal-text lighten-3">Register</h1>
         <div class="content-container-with-padding z-depth-4">
           <div class="row">
-            <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="createMemberForm">
+            <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="createUserForm">
               <div class="row">
                 <div class="input-field col s6">
                   <input id="first_name" type="text" class="validate" formControlName="firstName">
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="row right-align">
-                <button type="submit" [disabled]="!createMemberForm.valid"
+                <button type="submit" [disabled]="!createUserForm.valid"
                         class="waves-effect waves-light yellow darken-2 btn-large black-text">
                   Register
                   <i class="material-icons right">send</i>

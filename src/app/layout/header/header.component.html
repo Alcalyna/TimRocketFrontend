@@ -1,21 +1,25 @@
 <header>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">CodeCoach</a>
+      <a id="logo-container" href="#" class="brand-logo"><span class="mynav">Tim Rocket</span></a>
       <ul class="right hide-on-med-and-down">
-        <li><a [routerLink]="['/']">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li *ngIf="currentUser$ | async as currentUser; else notLoggedIn">Logged in as {{currentUser}}</li>
-        <ng-template #notLoggedIn>
+        <li><a [routerLink]="['/']"><span class="mynav">Home</span></a></li>
+        <li><a href="#"><span class="mynav">About us</span></a></li>
+        <li><a href="#"><span class="mynav">Contact</span></a></li>
+
+        <ng-container *ngIf="!isLoggedIn()">
           <li>
-            <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" (click)="clickLogin()">Log in<i
-            class="material-icons right">person</i></a>
+            <a class="waves-effect waves-light yellow darken-2 btn black-text" [routerLink]="['login']" >Log in<i
+              class="material-icons right">person</i></a>
           </li>
-        </ng-template>
-        <li><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
-          class="material-icons right">person_add</i></a></li>
+          <li ><a class="waves-effect waves-light teal lighten-3 btn black-text"  [routerLink]="['register']">Register<i
+            class="material-icons right">person_add</i></a></li>
+        </ng-container>
+
+        <li *ngIf="isLoggedIn()"><a class="waves-effect waves-light teal lighten-3 btn black-text" [routerLink]="['/']" (click)="logout()">Log out<i
+          class="material-icons right">power_settings_new</i></a></li>
       </ul>
+
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Home</a></li>
@@ -25,8 +29,17 @@
           class="material-icons right">person</i></a></li>
         <li><a class="waves-effect waves-light teal lighten-3 btn black-text">Register<i
           class="material-icons right">person_add</i></a></li>
+
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+
 </header>
+
+<div *ngIf="isLoggedIn()" class="nav-content yellow darken-2">
+  <app-user-nav></app-user-nav>
+</div>
+<!--<div *ngIf="currentUser.role==='COACH'" class="nav-content blue darken-2">-->
+<!--  <app-user-nav></app-user-nav>-->
+<!--</div>-->

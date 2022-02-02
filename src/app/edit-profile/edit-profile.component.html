@@ -1,0 +1,81 @@
+<div class="row" xmlns="http://www.w3.org/1999/html">
+
+  <div class="col s12 m2 l2">
+    <div class="content-container">
+      <h6>My Profile</h6>
+      <div class="collection">
+        <a href="#!" class="collection-item black-text active yellow darken-2" [routerLink]="['../profile']" >Profile Information</a>
+        <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
+        <a href="#!" class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m10 l10">
+    <div class="content-container">
+
+      <section class="card-panel grey lighten-5">
+        <h5>Edit Information</h5>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col l2 m2 s12">
+            <img src="{{ currentUser?.pictureUrl }}" class="responsive-img circle" alt="Profile Picture">
+<!--            <app-upload-file></app-upload-file>-->
+          </div>
+
+          <div class="col l10 m12 s12">
+          <form class="col s12" [formGroup]="editForm" >
+            <div class="row" >
+              <div class="input-field col s12">
+                <input id="firstName" type="text" class="validate" formControlName="firstName" [formControl]="ctlFirstName" >
+                <label for="firstName">First Name</label>
+                <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be less than 25 characters.</mat-error>
+                <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxLength')">The first name length should be more than 2 characters</mat-error>
+              </div>
+
+              <div class="input-field col s12">
+                <input id="lastName" type="text" class="validate" formControlName="lastName" [formControl]="ctlLastName">
+                <label for="lastName">Last Name</label>
+                <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be less than 25 characters.</mat-error>
+                <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxLength')">The last name length should be more than 2 characters</mat-error>
+              </div>
+
+              <div class="col s12">
+<!--                <input id="email" type="text" class="validate" formControlName="email" [formControl]="ctlEmail">-->
+                <label>Email</label>
+                <p>{{currentUser?.email}}</p>
+<!--                <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxLength')">The email length should be less than 50 characters.</mat-error>-->
+<!--                <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">The email format is not correct.</mat-error>-->
+              </div>
+
+              <div *ngIf="isAdmin()" class="col s12">
+                <label for="role">Role</label>
+                <select id="role" class="browser-default" material-select [formControl]="ctlRole">
+                  <option value="Coachee">Coachee</option>
+                  <option value="Coach">Coach</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+
+              <div class="col s12" *ngIf="!isAdmin()">
+                <label for="role">Role</label>
+                <p>{{currentUser?.role}}</p>
+              </div>
+              <div class="col s12">
+                <button class="btn waves-effect waves-light col s5" type="submit" name="action" (click)="onSubmit()" >Save
+                  <i class="material-icons left">send</i>
+                </button>
+                <a class="btn waves-effect waves-light col s5 yellow darken-2"  href="" [routerLink]="['../profile']">Cancel
+                  <i class="material-icons left">cancel</i>
+                </a>
+              </div>
+
+            </div>
+          </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

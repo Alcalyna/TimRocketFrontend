@@ -4,8 +4,8 @@ import {HttpKeycloakService} from "./http-keycloak.service";
 import {tap} from "rxjs/operators";
 import * as JWT from "jwt-decode";
 import {KeycloakToken} from "./keycloak-token";
-import {Member} from "../../model/Member";
-import {MemberService} from "../../service/member.service";
+import {User} from "../../model/User";
+import {UserService} from "../../service/user.service";
 import {KeycloakTokenResponse} from "./keycloakTokenResponse";
 
 
@@ -16,12 +16,16 @@ export class KeycloakService {
 
   private readonly token_key_name = 'access_token';
   private _loggedInUser$: Subject<string | null> = new Subject();
-  private currentUser: Subject<Member> = new Subject<Member>();
+  private _currentUser: Subject<User> = new Subject<User>();
+
+
 
   constructor(
     private httpKeycloakService: HttpKeycloakService,
-    private memberService: MemberService
-  ) {}
+    private userService: UserService
+  ) {
+
+  }
 
   get loggedInUser$(): Observable<string | null> {
     return this._loggedInUser$;
@@ -36,13 +40,12 @@ export class KeycloakService {
   }
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
-    this.memberService.getMemberBy(loginData.email).subscribe(member => this.currentUser.next(member));
     return this.httpKeycloakService.logIn(loginData)
       .pipe(tap(response => this.setToken(response.access_token)));
   }
 
-  get currentMember(): Observable<Member> {
-    return this.currentUser;
+  get currentUser(): Subject<User> {
+    return this._currentUser;
   }
 
   logout(): void {
@@ -52,6 +55,7 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
+    this.userService.getUserBy(this.getUsername());
     this.sendSignal();
   }
 
@@ -59,11 +63,13 @@ export class KeycloakService {
     this._loggedInUser$.next(this.getUsername());
   }
 
-  public getUsername(): string | null {
+  public getUsername(): string {
     let token = this.getToken();
     if (token) {
       return (JWT.default(token) as KeycloakToken).preferred_username
     }
-    return null;
+    return "";
+    //this returned null, so maybe refactoring is needed.
   }
+
 }
