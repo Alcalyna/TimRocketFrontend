@@ -78,21 +78,16 @@ export class EditProfileComponent implements OnInit {
       lastName: this.editForm.value.lastName,
       email: this.editForm.value.email,
       role: this.editForm.value.role
-      //pictureUrl: this.editForm.value.pictureUrl
     }
-    // console.log(this.currentUser);
-    // console.log(this.currentUser.role);
-    // console.log(this.editForm.value);
     console.log("The new role is " + changedUser.role);
-
     if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase() === "coach") {
       console.log("I am currently a " + currentRole + " and I'd like to become a coach.");
       this.userService.editProfile(this.currentUser?.userId!, changedUser).pipe(mergeMap(() => this.keyCloakService.refreshToken()))
         .subscribe(res => {
           this.router.navigateByUrl(`coach/${id}`);
-          window.location.href=(`coach/${id}`);
+          window.location.href = (`coach/${id}`);
         });
-    } else if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase()==="coachee") {
+    } else if (currentRole.toLowerCase() === "admin" && changedUser.role.toLowerCase() === "coachee") {
       console.log("I am currently a " + currentRole + " and I'd like to become a coachee.");
       this.userService.editProfile(this.currentUser?.userId!, changedUser).pipe(mergeMap(() => this.keyCloakService.refreshToken()))
         .subscribe(res => {
@@ -101,14 +96,12 @@ export class EditProfileComponent implements OnInit {
     } else {
       console.log("I am currently a " + currentRole + " and I don't want to change my role.");
       this.userService.editProfile(this.currentUser?.userId!, changedUser).subscribe(res => {
-        //window.location.href="/profile";
         this.router.navigate(['profile']);
       });
     }
   }
 
-
-getCurrentUser(): User {
-  return this.currentUser = this.userService.currentUser;
-}
+  getCurrentUser(): User {
+    return this.currentUser = JSON.parse(localStorage.getItem('loggedInUser')!);
+  }
 }

@@ -5,7 +5,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/User";
 import {Router} from "@angular/router";
 import {ConfirmedValidator} from "./ConfirmedValidator";
-import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
   selector: 'app-register',
@@ -26,8 +25,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
-              private router: Router,
-              private keycloak: KeycloakService) {
+              private router: Router) {
   }
 
   ngOnInit(): void {

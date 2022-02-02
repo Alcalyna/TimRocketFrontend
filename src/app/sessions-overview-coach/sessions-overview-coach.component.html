@@ -31,12 +31,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let session of sessions | async | filterSessionsWithCoacheeId: this.currentUser.userId ">
+                <tr *ngFor="let session of sessions | async | filterSessionsWithCoachId: this.currentUser.userId ">
                   <td>{{ session.coachee.firstName }}   {{ session.coachee.lastName}}</td>
                   <td>{{ session.subject}}</td>
                   <td>{{session.date}}</td>
                   <td>{{session.time}}</td>
-                  <td>{{session.location}}</td>
+                  <td>{{session.location}}<p *ngIf="session.location==='f2f'">{{session.f2fLocation}}</p></td>
                 </tr>
                 </tbody>
               </table>

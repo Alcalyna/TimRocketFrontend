@@ -2,11 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SessionService} from "../../service/session.service";
-import {UserService} from "../../service/user.service";
-import {User} from "../../model/User";
 import {Session} from "../../model/Session";
 import DatepickerOptions = M.DatepickerOptions;
-import {now} from "jquery";
 
 
 @Component({
@@ -17,11 +14,10 @@ import {now} from "jquery";
 export class RequestASessionComponent implements OnInit {
 
   public error: any;
-  private user!: User;
   datePickerElem: any;
   timePickerElem: any;
 
-  sessionForm: FormGroup =      this.formBuilder.group({
+  sessionForm: FormGroup = this.formBuilder.group({
     subject: ['', [Validators.required, Validators.maxLength(25)]],
     date: ['', [Validators.required]],
     time: ['', [Validators.required]],
@@ -33,14 +29,11 @@ export class RequestASessionComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private sessionService: SessionService,
-              private userService: UserService) {
+              private sessionService: SessionService) {
 
   }
 
   ngOnInit(): void {
-    this.userService.getcurrentUser()
-      .subscribe(user => this.user = user);
     this.setValidators();
   }
 
@@ -127,7 +120,7 @@ export class RequestASessionComponent implements OnInit {
   onSubmit() {
     const sessionToCreate = this.sessionForm.value as Session;
     sessionToCreate.coach_id = this.activatedRoute.snapshot.paramMap.get('id')!;
-    sessionToCreate.coachee_id = this.user.userId;
+    sessionToCreate.coachee_id = JSON.parse(localStorage.getItem('loggedInUser')!).userId
     this.sessionService.createSession(sessionToCreate)
       .subscribe(success => {
           this.router.navigate(['profile']);

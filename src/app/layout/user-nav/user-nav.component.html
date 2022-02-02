@@ -1,5 +1,4 @@
 <div *ngIf="!hasRoute('coach/')" class="nav-content yellow darken-2">
-<!--<div *ngIf="currentUser?.role?.toLowerCase() === 'coachee'" class="nav-content yellow darken-2">-->
 <div class="container">
     <ul class="tabs tabs-transparent">
       <li class="tab"><a class="black-text" [routerLink]="['profile']">My Profile</a></li>
@@ -10,7 +9,6 @@
 </div>
 
 <div *ngIf="hasRoute('coach/')" class="nav-content teal lighten-3">
-<!--<div *ngIf="currentUser?.role?.toLocaleLowerCase() === 'coach'" class="nav-content teal lighten-3">-->
   <div class="container">
     <ul class="tabs tabs-transparent">
       <li class="tab"><a class="black-text"  [routerLink]="['profile']">My Profile</a></li>
