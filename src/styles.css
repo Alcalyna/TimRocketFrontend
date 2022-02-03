@@ -80,8 +80,14 @@ p {
   font-size: inherit;
 }
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 #page-container {
   position: relative;
