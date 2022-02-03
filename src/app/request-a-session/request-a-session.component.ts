@@ -123,6 +123,7 @@ export class RequestASessionComponent implements OnInit {
     sessionToCreate.coachee_id = JSON.parse(localStorage.getItem('loggedInUser')!).userId
     this.sessionService.createSession(sessionToCreate)
       .subscribe(success => {
+        alert("Session Request Succeeded")
           this.router.navigate(['profile']);
         },
         error => {
