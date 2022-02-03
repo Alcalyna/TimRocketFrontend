@@ -2,12 +2,10 @@
 
   <div class="col s12 m2">
     <div class="content-container">
-      <h6>My Coach Profile</h6>
+      <h2>My Coach Profile</h2>
       <div class="collection">
-        <a [routerLink]="['profile']" class="collection-item black-text active teal lighten-3">Profile Information</a>
-        <a class="collection-item grey-text text-darken-2" (click)="navigate()">Coaching sessions<span
-          class="btn-floating btn-small teal lighten-3 pulse">1</span></a>
-        <a href="#!" class="collection-item grey-text text-darken-2">Request profile change</a>
+        <a [routerLink]="['coach/' + currentUser.userId]" class="collection-item black-text active teal lighten-3">Profile Information</a>
+        <a class="collection-item grey-text text-darken-2" (click)="navigate()">Coaching sessions</a>
       </div>
     </div>
   </div>
@@ -16,7 +14,7 @@
     <div *ngIf="coach" class="content-container">
 
       <section class="card-panel grey lighten-5">
-        <h5>Profile Information</h5>
+        <h3>Profile Information</h3>
         <div class="divider"></div>
         <div class="row">
           <div class="col l2 m2 s12">
@@ -46,11 +44,7 @@
 
       <div class="divider"></div>
       <section class="card-panel grey lighten-5">
-        <div class="right">
-          <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
-            class="material-icons left">edit</i>Edit</a>
-        </div>
-        <h5>Coach Information</h5>
+          <h3>Coach Information</h3>
         <div class="divider"></div>
         <div class="row">
           <div class="col l12 m12 s12">
@@ -83,10 +77,6 @@
       </section>
       <div class="divider"></div>
             <section class="card-panel grey lighten-5">
-              <div class="right">
-                <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
-                  class="material-icons left">edit</i>Edit</a>
-              </div>
               <h5>Coaching topics</h5>
               <div class="divider"></div>
               <div class="row">
@@ -96,15 +86,6 @@
                     <tr>
                       <td><strong>{{coachTopic.name}}</strong></td>
                       <td>
-<!--                        <div class="center">-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>-->
-<!--                          <a class="btn-floating"><i class="material-icons">filter_4</i></a>-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_5</i></a>-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_6</i></a>-->
-<!--                          <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>-->
-<!--                        </div>-->
                         {{coachTopic.experience}}
                       </td>
                     </tr>

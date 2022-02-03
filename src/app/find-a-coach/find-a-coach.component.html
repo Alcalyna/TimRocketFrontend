@@ -37,7 +37,7 @@
           <div class="row" >
             <ng-container *ngFor="let coach of coaches | async | search:searchTerm | filter:result | filterByExperience:selectedExperience:result | filterCurrentUser:loggedInUser" >
               <div class="col l3 m4 s12">
-                <h5 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h5>
+                <h2 class="header">{{coach.user.firstName}} {{coach.user.lastName}}</h2>
                 <div class="card horizontal">
                   <div class="card-image">
                     <img src="{{coach.user.pictureUrl}}">
@@ -45,13 +45,9 @@
                   <div class="card-stacked">
                     <div class="card-content">
                       <table class="highlight responsive-table">
-                        <tbody>
-                        <tr>
                           <span *ngFor="let topic of coach.coachTopics">
-                          <td>{{topic.name}} / {{topic.experience}}</td>
+                            <p>{{topic.name}} / {{topic.experience}}</p>
                           </span>
-                        </tr>
-                        </tbody>
                       </table>
                     </div>
                     <a [routerLink]="['../coach-detail/'] + coach.user.userId " class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i

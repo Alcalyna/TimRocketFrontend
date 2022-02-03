@@ -27,4 +27,11 @@ export class SessionsOverviewCoacheeComponent implements OnInit {
     console.log(this.currentUser)
   }
 
+  isACoachee(): boolean {
+    if (this.keyCloakService.isLoggedIn()) {
+      return JSON.parse(localStorage.getItem('loggedInUser')!).role.toLowerCase() === 'coachee';
+    }
+    return false;
+  }
+
 }

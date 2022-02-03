@@ -4,10 +4,10 @@
 
     <div class="col s12 m2 l2">
       <div class="content-container">
-        <h6>My Profile</h6>
+        <h2>My Profile</h2>
         <div class="collection">
-          <a href="#!" class="collection-item grey-text text-darken-2">Profile Information</a>
-          <a href="#!" class="collection-item black-text active teal lighten-3" [routerLink]="['../my-sessions']">Coaching sessions</a>
+          <a [routerLink]="['../' + currentUser.userId]" class="collection-item grey-text text-darken-2">Profile Information</a>
+          <a class="collection-item black-text active teal lighten-3" [routerLink]="['../my-sessions']">Coaching sessions</a>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
                   <td>{{ session.subject}}</td>
                   <td>{{session.date}}</td>
                   <td>{{session.time}}</td>
-                  <td>{{session.location}}<p *ngIf="session.location==='f2f'">{{session.f2fLocation}}</p></td>
+                  <td>{{session.location}}</td>
                 </tr>
                 </tbody>
               </table>
