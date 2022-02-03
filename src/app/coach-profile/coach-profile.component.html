@@ -2,7 +2,7 @@
 
   <div class="col s12 m2">
     <div class="content-container">
-      <h6>My Coach Profile</h6>
+      <h2>My Coach Profile</h2>
       <div class="collection">
         <a [routerLink]="['coach/' + currentUser.userId]" class="collection-item black-text active teal lighten-3">Profile Information</a>
         <a class="collection-item grey-text text-darken-2" (click)="navigate()">Coaching sessions</a>
@@ -14,7 +14,7 @@
     <div *ngIf="coach" class="content-container">
 
       <section class="card-panel grey lighten-5">
-        <h5>Profile Information</h5>
+        <h3>Profile Information</h3>
         <div class="divider"></div>
         <div class="row">
           <div class="col l2 m2 s12">
@@ -44,7 +44,7 @@
 
       <div class="divider"></div>
       <section class="card-panel grey lighten-5">
-          <h5>Coach Information</h5>
+          <h3>Coach Information</h3>
         <div class="divider"></div>
         <div class="row">
           <div class="col l12 m12 s12">
