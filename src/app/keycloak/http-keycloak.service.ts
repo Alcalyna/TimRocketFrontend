@@ -23,21 +23,15 @@ export class HttpKeycloakService {
     body.set('email', loginData.email);
     body.set('password', loginData.password);
     body.set('client_id', 'CodeCoachTimRocket');
-   // body.set('client_secret', '37ceed79-e027-4c98-a4d4-e691bc564574');
     body.set('grant_type', 'password');
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions);
   }
 
   refreshToken(token: string): Observable<KeycloakTokenResponse> {
-    // console.log("The refresh token: " + token)
     const body = new URLSearchParams();
     body.set('client_id', 'CodeCoachTimRocket');
     body.set('grant_type', 'refresh_token');
     body.set('refresh_token', token);
-    // console.log("We are now here!");
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions)
   }
-
-
-
 }

@@ -13,29 +13,17 @@ import {Topic} from "../model/Topic";
 })
 export class UserService {
 
-
-  private _currentUser!: Observable<User>
-
   url: string
-  currentUser!: User;
 
   constructor(private http: HttpClient) {
     this.url = `${environment.backendUrl}/users`;
   }
 
-  // getUsers(): Observable<User[]> {
-  //   return this.http.get<any[]>(this.url);
-  // }
-
   getCoaches(): Observable<Coach[]> {
     return this.http.get<any[]>(`${this.url}?coach=`)
   }
 
-  getcurrentUser(): Observable<User> {
-    return this._currentUser;
-  }
-
-  getTopics(): Observable<Topic[]>{
+  getTopics(): Observable<Topic[]> {
     return this.http.get<any[]>(`${environment.backendUrl}/topics`)
   }
 
@@ -51,12 +39,8 @@ export class UserService {
     return this.http.get<User>(`${this.url}/${id}?user=`);
   }
 
-  getCoach(id: string): Observable<Coach>{
+  getCoach(id: string): Observable<Coach> {
     return this.http.get<Coach>(`${this.url}/${id}?coach=`);
-  }
-
-  setCurrentUser(email: string) {
-    this._currentUser = this.getUserBy(email);
   }
 
   editProfile(id: String, profileUpdate: ProfileUpdate): Observable<User> {
@@ -66,8 +50,5 @@ export class UserService {
   editRoleToCoach(): Observable<User> {
     return this.http.put<User>(this.url, null);
   }
-
-
-
 
 }

@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {User} from "../../model/User";
 import {KeycloakService} from "../keycloak/keycloak.service";
 
+
 @Component({
   selector: 'app-find-a-coach',
   templateUrl: './find-a-coach.component.html',

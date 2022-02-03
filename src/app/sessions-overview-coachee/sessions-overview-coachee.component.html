@@ -1,0 +1,53 @@
+<main>
+
+  <div class="row">
+
+    <div class="col s12 m2 l2">
+      <div class="content-container">
+        <h6>My Profile</h6>
+        <div class="collection">
+          <a class="collection-item grey-text text-darken-2" [routerLink]="['profile']">Profile Information</a>
+          <a class="collection-item black-text active yellow darken-2" [routerLink]="['../my-sessions-as-coachee']">Coaching sessions</a>
+          <a class="collection-item grey-text text-darken-2" [routerLink]="['../apply']">Apply to become a coach</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m10 l10">
+      <div class="content-container">
+
+        <section class="card-panel grey lighten-5">
+          <h1>My upcoming sessions</h1>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col l12 s12">
+              <table class="highlight responsive-table">
+                <thead>
+                <tr>
+                  <th>Coach</th>
+                  <th>Subject</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Location</th>
+                 <!-- <th>Status</th> -->
+                 <!-- <th>Actions</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let session of sessions | async | filterSessionsWithCoacheeId: this.currentUser.userId ">
+                  <td>{{ session.coach.user.firstName }}   {{ session.coach.user.lastName}}</td>
+                  <td>{{ session.subject}}</td>
+                  <td>{{session.date}}</td>
+                  <td>{{session.time}}</td>
+                  <td>{{session.location}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+       </section>
+      </div>
+    </div>
+  </div>
+
+</main>

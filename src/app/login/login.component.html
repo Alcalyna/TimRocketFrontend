@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row">
     <div class="col s12 m12">
       <h1 class="center teal-text lighten-3">Sign in</h1>
@@ -9,7 +8,6 @@
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" type="email" class="validate" formControlName="email">
-
                 <mat-error class="field-error" *ngIf="ctlEmail.hasError('email')">Please enter a valid e-mail address</mat-error>
                 <mat-error class="field-error" *ngIf="ctlEmail.hasError('maxlength')">Max characters is 50</mat-error>
                 <label for="email">Email</label>
@@ -22,7 +20,6 @@
               </div>
             </div>
             <div class="row">
-
                 <div class="col s6">
                   <div *ngIf="error" class="error-red">
                     <p>Your password is incorrect or this account doesn't exist. <br>Please reset your password or create a new account.</p>
@@ -36,9 +33,7 @@
                       class="material-icons right" type="submit" >send</i></button>
                   </div>
                 </div>
-
             </div>
-
           </form>
         </div>
       </div>
