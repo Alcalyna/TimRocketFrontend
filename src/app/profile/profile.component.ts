@@ -58,10 +58,10 @@ export class ProfileComponent implements OnInit {
   getUser(id: string) {
     console.log("60 The id is " + id);
     this.userService.getUser(id!)
-      .subscribe(user => user == null && !(this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) ? console.log("62") : this.userToDisplay = user
+      .subscribe(user => user == null && !(this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId) ? (this.keyCloakService.isLoggedIn() && id == JSON.parse(localStorage.getItem('loggedInUser')!).userId ? this.router.navigateByUrl('') : console.log("62")) : this.userToDisplay = user
       );
   }
 
-  //this.router.navigateByUrl('')
+  //this.router.navigateByUrl('') console.log("62")
 
 }
